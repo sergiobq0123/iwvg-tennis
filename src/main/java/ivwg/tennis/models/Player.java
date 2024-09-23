@@ -1,20 +1,14 @@
 package ivwg.tennis.models;
 
-public class Player {
-    private int id;
+import ivwg.utils.Identifier;
+
+public class Player extends Identifier {
     private String name;
     private boolean service;
 
     public Player(String name) {
+        super();
         this.name = name;
-    }
-
-    public void setId(int id) {
-        this.id=id;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
@@ -24,7 +18,7 @@ public class Player {
     @Override
     public String toString() {
         return "Player{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", name='" + name + '\'' +
                 '}';
     }

@@ -4,26 +4,27 @@ import ivwg.tennis.database.RefereeDAO;
 import ivwg.tennis.models.Referee;
 import ivwg.tennis.types.Error;
 
-public class RefereeController {
-    private RefereeDAO refereeDAO;
+import java.util.Objects;
 
-    public RefereeController() {
-        refereeDAO = new RefereeDAO();
-    }
+public class RefereeController extends BaseController<Referee> {
 
-    public Error addReferee (Referee referee) {
-        boolean si = refereeDAO.exists(referee);
-        if (!refereeDAO.exists(referee)) {
-            refereeDAO.addReferee(referee);
-            return Error.NULL_ERROR;
-        }
-        return Error.DUPLICATE_REFEREE;
-    }
+    private final RefereeDAO refereeDAO = new RefereeDAO();
 
-    public Error login (String name, String password) {
-        if (refereeDAO.login(new Referee(name, password))){
+    public Error login(String name, String password) {
+        boolean existReferee = this.existEntity(
+                r -> Objects.equals(r.getName(), name) && Objects.equals(r.getPassword(), password)
+        );
+        if (existReferee) {
             return Error.NULL_ERROR;
         }
         return Error.NOT_LOGIN;
+    }
+
+    public Error addReferee(Referee referee) {
+        Referee addedReferee = this.addEntity(referee);
+        if (addedReferee == null) {
+            return Error.DUPLICATE_REFEREE;
+        }
+        return Error.NULL_ERROR;
     }
 }

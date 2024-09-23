@@ -1,6 +1,6 @@
 package ivwg.tennis.views;
 
-public enum MessageView {
+public enum MessageView{
     SEPARATOR("-----------------------------------------------------"),
     START_GAME("---------------------- TENNIS -----------------------"),
     START_REFEREE_VIEW("-------------------- REFEREE --------------------"),

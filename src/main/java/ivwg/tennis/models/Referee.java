@@ -1,13 +1,15 @@
 package ivwg.tennis.models;
 
-import ivwg.tennis.database.RefereeDAO;
+import ivwg.utils.Identifier;
+import ivwg.tennis.types.Error;
 
-public class Referee {
+public class Referee extends Identifier {
 
     private String name;
     private String password;
 
     public Referee(String name, String password) {
+        super();
         this.name = name;
         this.password = password;
     }
@@ -18,5 +20,13 @@ public class Referee {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String toString() {
+        return "Referee{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
