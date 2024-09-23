@@ -90,7 +90,7 @@ public class Match {
     }
 
     public void updateMatch(){
-        this.scoreBoard.updateMatchAfterWin();
+//        this.scoreBoard.updateMatchAfterWin();
     }
 
     public ScoreBoard getScoreBoard() {

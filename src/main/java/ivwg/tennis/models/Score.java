@@ -6,7 +6,7 @@ public abstract class Score {
 
     private int scorePlayer1;
     private int scorePlayer2;
-
+    private int idGameWinner;
     private List<Player> players;
 
     public Score(List<Player> players) {
@@ -38,5 +38,13 @@ public abstract class Score {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
+    }
+
+    public int getIdGameWinner() {
+        return idGameWinner;
+    }
+
+    public void setIdGameWinner(int idGameWinner) {
+        this.idGameWinner = idGameWinner;
     }
 }

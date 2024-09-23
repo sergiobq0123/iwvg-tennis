@@ -51,8 +51,8 @@ public class ScoreBoard {
         else
             this.setScore.updateScore2();
     }
-
     public void updateSetsAfterWin(){
+        int winnerId =  this.setScore.getIdGameWinner();
 
     }
 
