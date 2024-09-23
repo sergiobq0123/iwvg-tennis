@@ -10,7 +10,6 @@ import ivwg.utils.WithConsoleView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class MatchView extends WithConsoleView {
     private MatchController matchController;
@@ -26,13 +25,15 @@ public class MatchView extends WithConsoleView {
 
         int sets = this.readValidSets();
 
-        UUID player1 = this.readValidPlayer(MessageView.PLAYER_1.getMessage());
-        UUID player2 = this.readValidPlayer(MessageView.PLAYER_2.getMessage());
+        int player1 = this.readValidPlayer(MessageView.PLAYER_1.getMessage());
+        int player2 = this.readValidPlayer(MessageView.PLAYER_2.getMessage());
 
         Player p1 = playerController.getPlayer(player1);
         Player p2 = playerController.getPlayer(player2);
 
-        this.matchController.addMatch(new Match(sets, new ArrayList<>(List.of(p1, p2))));
+        Match match = new Match(sets, new ArrayList<>(List.of(p1, p2)));
+        this.matchController.addMatch(match);
+        this.playMatch(match);
     }
 
     private int readValidSets() {
@@ -47,11 +48,11 @@ public class MatchView extends WithConsoleView {
         return sets;
     }
 
-    private UUID readValidPlayer(String message) {
+    private int readValidPlayer(String message) {
         boolean ok = false;
-        UUID playerId;
+        int playerId;
         do {
-            playerId = UUID.fromString(this.console.readString(message));
+            playerId = this.console.readInt(message);
             Error error = this.playerController.playerExists(playerId);
             this.handeldError(error);
             ok = (error != Error.PLAYER_NOT_FOUND);
@@ -59,7 +60,13 @@ public class MatchView extends WithConsoleView {
         return playerId;
     }
 
-    public void readPlayers(){
+    public void readMatches(){
         this.console.writeln(this.matchController.getMatches().toString());
+    }
+
+    public void playMatch(Match match) {
+        this.console.writeln(MessageView.ID.getMessage() + match.getId());
+        this.console.writeln(MessageView.DATE.getMessage() + match.getDate());
+        this.matchController.playMatch(match);
     }
 }

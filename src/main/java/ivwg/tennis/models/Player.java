@@ -1,17 +1,19 @@
 package ivwg.tennis.models;
 
-import java.util.UUID;
-
 public class Player {
-    private UUID id;
+    private int id;
     private String name;
+    private boolean service;
 
     public Player(String name) {
-        this.id = UUID.randomUUID();
         this.name = name;
     }
 
-    public UUID getId() {
+    public void setId(int id) {
+        this.id=id;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -25,5 +27,13 @@ public class Player {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public boolean getService() {
+        return service;
+    }
+
+    public void setService(boolean service) {
+        this.service = service;
     }
 }

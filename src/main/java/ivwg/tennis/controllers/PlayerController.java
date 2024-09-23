@@ -10,12 +10,14 @@ import java.util.UUID;
 public class PlayerController {
 
     private PlayerDAO playerDAO;
+    private int nextId= 1;
 
     public PlayerController() {
         this.playerDAO = new PlayerDAO();
     }
 
     public Error addPlayer(Player player) {
+        player.setId(this.generateUniqueId());
         if (!playerDAO.existsByName(player.getName())) {
             playerDAO.addPlayer(player);
             return Error.NULL_ERROR;
@@ -27,15 +29,19 @@ public class PlayerController {
         return this.playerDAO.getPlayers();
     }
 
-    public Player getPlayer(UUID id) {
+    public Player getPlayer(int id) {
         return this.playerDAO.getPlayer(id);
     }
 
-    public Error playerExists(UUID id) {
+    public Error playerExists(int id) {
         if (playerDAO.existsById(id)) {
             return Error.NULL_ERROR;
         }
         return Error.PLAYER_NOT_FOUND;
+    }
+
+    private int generateUniqueId() {
+        return nextId++;
     }
 }
 

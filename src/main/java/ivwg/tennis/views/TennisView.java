@@ -20,6 +20,6 @@ public class TennisView {
         this.playerView.readPlayers();
 
         this.matchView.addMatch();
-        this.matchView.readPlayers();
+        this.matchView.readMatches();
     }
 }
