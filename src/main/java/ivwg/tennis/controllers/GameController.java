@@ -11,7 +11,8 @@ public class GameController {
     private int nextId= 1;
 
     public GameController() {
-        this.gameDAO = new GameDAO();
+        gameDAO = new GameDAO();
+        pointController = new PointController();
     }
     public void addGame(Game game) {
         game.setId(this.generateUniqueId());
@@ -20,10 +21,9 @@ public class GameController {
 
     public void playGame(Game game) {
         game.changeService();
-        this.pointController = new PointController(game.getScoreBoard());
         game.resetScore();
         while(!game.hasWinner()){
-            this.pointController.playPoint();
+            this.pointController.playPoint(game.getScoreBoard());
         }
         game.updateGames();
     }

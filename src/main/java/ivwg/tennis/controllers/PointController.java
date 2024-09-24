@@ -6,31 +6,29 @@ import ivwg.tennis.types.Action;
 
 public class PointController {
 
-    private final ScoreBoard scoreBoard;
     private Fault fault;
 
-    public PointController(ScoreBoard scoreBoard){
-        this.scoreBoard = scoreBoard;
+    public PointController(){
         this.fault = new Fault();
     }
 
-    public void playPoint() {
+    public void playPoint(ScoreBoard scoreBoard) {
         Action action = Action.generateRandomAction();
         if (action != Action.FAULT){
             scoreBoard.updatePointScore(action);
             fault.resetConsecutiveFaults();
         }else {
-            handledFault();
+            handledFault(scoreBoard);
         }
     }
 
-    private void handledFault() {
+    private void handledFault(ScoreBoard scoreBoard) {
         fault.sumFault();
         if(fault.isSecondFault()){
             // GetServicePlayer()
             fault.resetConsecutiveFaults();
         }else {
-            playPoint();
+            playPoint(scoreBoard);
         }
     }
 }

@@ -11,7 +11,6 @@ public class TennisController {
         this.tennisView.interact();
     }
 
-
     public static void main(String[] args) {
         new TennisController().play();
     }
