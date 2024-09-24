@@ -1,14 +1,19 @@
 package ivwg.tennis.controllers;
 
-import ivwg.tennis.database.RefereeDAO;
+import ivwg.tennis.database.BaseDAO;
 import ivwg.tennis.models.Referee;
 import ivwg.tennis.types.Error;
 
+import java.sql.Ref;
 import java.util.Objects;
 
 public class RefereeController extends BaseController<Referee> {
 
-    private final RefereeDAO refereeDAO = new RefereeDAO();
+    private final BaseDAO<Referee> refereeDAO;
+
+    public RefereeController() {
+        this.refereeDAO = new BaseDAO<>();
+    }
 
     public Error login(String name, String password) {
         boolean existReferee = this.existEntity(

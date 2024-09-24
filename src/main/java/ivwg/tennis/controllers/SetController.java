@@ -1,23 +1,23 @@
 package ivwg.tennis.controllers;
 
-import ivwg.tennis.database.SetDAO;
+import ivwg.tennis.database.BaseDAO;
 import ivwg.tennis.models.Game;
 import ivwg.tennis.models.Set;
 
-public class SetController {
+public class SetController extends BaseController<Set> {
 
-    private GameController gameController;
-    private SetDAO setDAO;
+    private final GameController gameController;
+    private final BaseDAO<Set> setDAO;
     private int nextId= 1;
 
     public SetController() {
         this.gameController = new GameController();
-        this.setDAO = new SetDAO();
+        this.setDAO = new BaseDAO<>();
     }
 
     public void addSet(Set set) {
         set.setId(this.generateUniqueId());
-        this.setDAO.addSet(set);
+        this.setDAO.addEntity(set);
     }
 
     public void playSet(Set set){

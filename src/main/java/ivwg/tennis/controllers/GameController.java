@@ -1,22 +1,21 @@
 package ivwg.tennis.controllers;
 
-
-import ivwg.tennis.database.GameDAO;
+import ivwg.tennis.database.BaseDAO;
 import ivwg.tennis.models.Game;
 
-public class GameController {
+public class GameController extends BaseDAO<Game> {
 
     private PointController pointController;
-    private GameDAO gameDAO;
+    private BaseDAO<Game> gameDAO;
     private int nextId= 1;
 
     public GameController() {
-        gameDAO = new GameDAO();
+        gameDAO = new BaseDAO<>();
         pointController = new PointController();
     }
     public void addGame(Game game) {
         game.setId(this.generateUniqueId());
-        this.gameDAO.addGame(game);
+        this.gameDAO.addEntity(game);
     }
 
     public void playGame(Game game) {
