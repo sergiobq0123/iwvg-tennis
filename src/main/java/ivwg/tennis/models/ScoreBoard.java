@@ -22,7 +22,7 @@ public class ScoreBoard {
     }
 
     public void resetScore(Score score){
-        this.setScore.reset();
+        score.reset();
     }
 
     public void addSet1() {
