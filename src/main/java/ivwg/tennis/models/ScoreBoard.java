@@ -16,15 +16,12 @@ public class ScoreBoard {
         this.players= players;
     }
 
-    public boolean hasSetWinner(){
-      return this.setScore.hasWinner();
+    public boolean hasWinner(Score score){
+     return score.hasWinner();
     }
 
-    public boolean hasMatchWinner(){
-      return this.matchScore.hasWinner();
-    }
-    public boolean hasGameWinner(){
-      return this.gameScore.hasWinner();
+    public void resetScore(Score score){
+        this.setScore.reset();
     }
 
     public void addSet1(){
@@ -41,14 +38,6 @@ public class ScoreBoard {
             this.gameScore.updateScore(isPlayer1);
 
         }
-    }
-
-    public void resetGameScore(){
-        this.gameScore.reset();
-    }
-
-    public void resetSetScore(){
-        this.setScore.reset();
     }
 
     public void updateGamesAfterWin(){
@@ -79,4 +68,15 @@ public class ScoreBoard {
         }
     }
 
+    public SetScore getSetScore() {
+        return setScore;
+    }
+
+    public MatchScore getMatchScore() {
+        return matchScore;
+    }
+
+    public GameScore getGameScore() {
+        return gameScore;
+    }
 }

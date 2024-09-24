@@ -8,7 +8,6 @@ public class Set {
     private int id;
     private List<Game> games;
     private ScoreBoard scoreBoard;
-    private int winnerId;
 
     public Set(ScoreBoard scoreBoard) {
         this.scoreBoard = scoreBoard;
@@ -16,7 +15,7 @@ public class Set {
     }
 
     public boolean hasWinner() {
-        return this.scoreBoard.hasSetWinner();
+        return this.scoreBoard.hasWinner(this.scoreBoard.getSetScore());
     }
 
     public int getId() {
@@ -36,5 +35,9 @@ public class Set {
 
     public void updateSets(){
         this.scoreBoard.updateSetsAfterWin();
+    }
+
+    public void resetScore(){
+        this.scoreBoard.resetScore(this.scoreBoard.getSetScore());
     }
 }

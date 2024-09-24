@@ -24,7 +24,7 @@ public class Match {
     }
 
     public boolean hasWinner(){
-        return this.scoreBoard.hasMatchWinner();
+        return this.scoreBoard.hasWinner(this.scoreBoard.getMatchScore());
     }
 
     public int getId() {
@@ -96,4 +96,5 @@ public class Match {
     public ScoreBoard getScoreBoard() {
         return scoreBoard;
     }
+
 }
