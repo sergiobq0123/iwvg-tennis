@@ -5,8 +5,8 @@ import ivwg.tennis.models.Game;
 
 public class GameController extends BaseDAO<Game> {
 
-    private PointController pointController;
-    private BaseDAO<Game> gameDAO;
+    private final PointController pointController;
+    private final BaseDAO<Game> gameDAO;
     private int nextId= 1;
 
     public GameController() {
