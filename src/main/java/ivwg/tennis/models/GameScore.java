@@ -14,13 +14,16 @@ public class GameScore extends Score{
     public boolean hasWinner(){
         int score1 = this.getScorePlayer1();
         int score2 = this.getScorePlayer2();
-        System.out.println("Van" + score1 + score2);
         if (score1 >= WINNING_POINTS && (score1 - score2) >= 2) {
+            System.out.println("Ganador game player1");
             this.setIdGameWinner(this.getPlayers().getFirst().getId());
             return true;
-        } else
+        } else if(score2 >= WINNING_POINTS && (score2 - score1) >= 2) {
+            System.out.println("Ganador game player2");
             this.setIdGameWinner(this.getPlayers().get(1).getId());
-        return score2 >= WINNING_POINTS && (score2 - score1) >= 2;
+            return true;
+        }
+        return false;
     }
 
     public void fault(){

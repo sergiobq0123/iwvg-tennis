@@ -4,7 +4,6 @@ public class Game {
 
     private int id;
     private ScoreBoard scoreBoard;
-    private int winnerID;
 
     public Game(ScoreBoard scoreBoard) {
         this.scoreBoard = scoreBoard;
@@ -28,5 +27,10 @@ public class Game {
     public void updateGames(){
         this.scoreBoard.updateGamesAfterWin();
     }
+
+    public void changeService(){
+        this.scoreBoard.changeService();
+    }
+
 
 }

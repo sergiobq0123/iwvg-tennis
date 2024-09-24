@@ -43,6 +43,14 @@ public class ScoreBoard {
         }
     }
 
+    public void resetGameScore(){
+        this.gameScore.reset();
+    }
+
+    public void resetSetScore(){
+        this.setScore.reset();
+    }
+
     public void updateGamesAfterWin(){
         int winnerId =  this.gameScore.getIdGameWinner();
         if (winnerId == this.players.getFirst().getId()){
@@ -51,18 +59,24 @@ public class ScoreBoard {
         else
             this.setScore.updateScore2();
     }
+
     public void updateSetsAfterWin(){
         int winnerId =  this.setScore.getIdGameWinner();
-
-    }
-
-    public void updateMatchesAfterWin(){
-        int winnerId =  this.gameScore.getIdGameWinner();
         if (winnerId == this.players.getFirst().getId()){
-            this.setScore.updateScore1();
+            this.matchScore.updateScore1();
         }
         else
-            this.setScore.updateScore2();
+            this.matchScore.updateScore2();
+    }
+    public void changeService(){
+        if (this.players.getFirst().getService()){
+            this.players.getFirst().setService(false);
+            this.players.get(1).setService(true);
+        }
+        else{
+            this.players.getFirst().setService(true);
+            this.players.get(1).setService(false);
+        }
     }
 
 }

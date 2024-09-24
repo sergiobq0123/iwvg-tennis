@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MatchScore extends Score{
 
-    private int numberSets;
+    private final int numberSets;
 
     private static final int SETS_3 = 3;
     private static final int WINNING_SETS_3 = 2;
@@ -28,8 +28,16 @@ public class MatchScore extends Score{
     }
 
     private boolean checkWinnerForSets(int setsToWin) {
-            return (this.getScorePlayer1() == setsToWin || this.getScorePlayer2() == setsToWin);
+        if (this.getScorePlayer1() == setsToWin){
+            System.out.println("Ganador match player1");
+            this.setIdGameWinner(this.getPlayers().getFirst().getId());
+            return true;
+        }
+        else if(this.getScorePlayer2() == setsToWin){
+            System.out.println("Ganador match player2");
+            this.setIdGameWinner(this.getPlayers().get(1).getId());
+            return true;
+        }
+            return false;
     }
-
-
 }

@@ -19,21 +19,37 @@ public class SetScore extends Score {
             this.tieBreak = true;
         }
         if(tieBreak)
-            checkWinnerTieBreak();
+           return checkWinnerTieBreak();
         else
-            checkNormalWinner();
-        return  false;
+           return checkNormalWinner();
     }
 
     private boolean checkWinnerTieBreak(){
-        return (getScorePlayer1() == 7 || getScorePlayer2() == 7 );
-
+        if(getScorePlayer1() == 7){
+            System.out.println("Ganador set player1");
+            this.setIdGameWinner(this.getPlayers().getFirst().getId());
+            return true;
+        }
+        else if(getScorePlayer2() == 7){
+            System.out.println("Ganador set player2");
+            this.setIdGameWinner(this.getPlayers().get(1).getId());
+            return true;
+        }
+        return false;
     }
 
     private boolean checkNormalWinner(){
-        return getScorePlayer1() >= WINNING_POINTS && (getScorePlayer1() - getScorePlayer2()) >= MINIMUM_LEAD
-        || getScorePlayer2() >= WINNING_POINTS && (getScorePlayer2() - getScorePlayer1()) >= MINIMUM_LEAD;
+        if(getScorePlayer1() >= WINNING_POINTS && (getScorePlayer1() - getScorePlayer2()) >= MINIMUM_LEAD){
+            System.out.println("Ganador set player1");
+
+            this.setIdGameWinner(this.getPlayers().getFirst().getId());
+            return true;
+        }
+       else if(getScorePlayer2() >= WINNING_POINTS && (getScorePlayer2() - getScorePlayer1()) >= MINIMUM_LEAD){
+            System.out.println("Ganador set player2");
+            this.setIdGameWinner(this.getPlayers().get(1).getId());
+            return true;
+        }
+       return false;
     }
-
-
 }

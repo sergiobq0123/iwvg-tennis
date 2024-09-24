@@ -47,4 +47,8 @@ public abstract class Score {
     public void setIdGameWinner(int idGameWinner) {
         this.idGameWinner = idGameWinner;
     }
+    public void reset(){
+        this.scorePlayer1 = 0;
+        this.scorePlayer2 = 0;
+    }
 }

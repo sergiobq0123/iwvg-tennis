@@ -21,6 +21,7 @@ public class SetController {
     }
 
     public void playSet(Set set){
+        set.getScoreBoard().resetSetScore();
         while(!set.hasWinner()){
             Game game= new Game(set.getScoreBoard());
             set.addGame(game);
