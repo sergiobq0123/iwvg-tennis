@@ -33,12 +33,12 @@ public class GameScore extends Score{
         else
             this.updateScore2();
     }
-    public void updateScore(boolean isPlayer1){
-        if(isPlayer1){
+
+    public void updateScorePlayer1(){
             this.updateScore1();
-        }
-        else{
-            this.updateScore2();
-        }
+    }
+
+    public void updateScorePlayer2(){
+        this.updateScore2();
     }
 }
