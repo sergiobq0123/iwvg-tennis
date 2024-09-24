@@ -1,7 +1,6 @@
 package ivwg.tennis.models;
 
 import ivwg.tennis.types.Action;
-
 import java.util.List;
 
 public class ScoreBoard {
@@ -18,16 +17,12 @@ public class ScoreBoard {
         this.players = players;
     }
 
-    public boolean hasSetWinner() {
-        return this.setScore.hasWinner();
+    public boolean hasWinner(Score score){
+     return score.hasWinner();
     }
 
-    public boolean hasMatchWinner() {
-        return this.matchScore.hasWinner();
-    }
-
-    public boolean hasGameWinner() {
-        return this.gameScore.hasWinner();
+    public void resetScore(Score score){
+        score.reset();
     }
 
     public void addSet1() {
@@ -46,17 +41,9 @@ public class ScoreBoard {
         }
     }
 
-    public void resetGameScore() {
-        this.gameScore.reset();
-    }
-
-    public void resetSetScore() {
-        this.setScore.reset();
-    }
-
-    public void updateGamesAfterWin() {
-        int winnerId = this.gameScore.getIdGameWinner();
-        if (winnerId == this.players.getFirst().getId()) {
+    public void updateGamesAfterWin(){
+        int winnerId =  this.gameScore.getIdGameWinner();
+        if (winnerId == this.players.getFirst().getId()){
             this.setScore.updateScore1();
         } else
             this.setScore.updateScore2();
@@ -80,4 +67,15 @@ public class ScoreBoard {
         }
     }
 
+    public SetScore getSetScore() {
+        return setScore;
+    }
+
+    public MatchScore getMatchScore() {
+        return matchScore;
+    }
+
+    public GameScore getGameScore() {
+        return gameScore;
+    }
 }

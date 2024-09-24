@@ -21,7 +21,7 @@ public class GameController {
     public void playGame(Game game) {
         game.changeService();
         this.pointController = new PointController(game.getScoreBoard());
-        game.getScoreBoard().resetGameScore();
+        game.resetScore();
         while(!game.hasWinner()){
             this.pointController.playPoint();
         }

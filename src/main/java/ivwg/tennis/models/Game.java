@@ -10,7 +10,7 @@ public class Game {
     }
 
     public boolean hasWinner() {
-        return this.scoreBoard.hasGameWinner();
+        return this.scoreBoard.hasWinner(this.getScoreBoard().getGameScore());
     }
 
     public int getId() {
@@ -32,5 +32,7 @@ public class Game {
         this.scoreBoard.changeService();
     }
 
-
+    public void resetScore(){
+        this.scoreBoard.resetScore(this.scoreBoard.getGameScore());
+    }
 }

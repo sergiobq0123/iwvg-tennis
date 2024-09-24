@@ -1,6 +1,5 @@
 package ivwg.tennis.controllers;
 
-import ivwg.tennis.views.RefereeView;
 import ivwg.tennis.views.TennisView;
 
 public class TennisController {
