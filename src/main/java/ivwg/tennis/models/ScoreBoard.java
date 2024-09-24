@@ -1,5 +1,7 @@
 package ivwg.tennis.models;
 
+import ivwg.tennis.types.Action;
+
 import java.util.List;
 
 public class ScoreBoard {
@@ -10,70 +12,69 @@ public class ScoreBoard {
     private List<Player> players;
 
     public ScoreBoard(int numberSets, List<Player> players) {
-        matchScore= new MatchScore(players,numberSets);
+        matchScore = new MatchScore(players, numberSets);
         setScore = new SetScore(players);
-        gameScore= new GameScore(players);
-        this.players= players;
+        gameScore = new GameScore(players);
+        this.players = players;
     }
 
-    public boolean hasSetWinner(){
-      return this.setScore.hasWinner();
+    public boolean hasSetWinner() {
+        return this.setScore.hasWinner();
     }
 
-    public boolean hasMatchWinner(){
-      return this.matchScore.hasWinner();
-    }
-    public boolean hasGameWinner(){
-      return this.gameScore.hasWinner();
+    public boolean hasMatchWinner() {
+        return this.matchScore.hasWinner();
     }
 
-    public void addSet1(){
+    public boolean hasGameWinner() {
+        return this.gameScore.hasWinner();
+    }
+
+    public void addSet1() {
         this.matchScore.updateScore1();
     }
-    public void addSet2(){
+
+    public void addSet2() {
         this.matchScore.updateScore1();
     }
 
-    public void updatePointScore(boolean isFault, boolean isPlayer1){
-        if(isFault){
-            this.gameScore.fault();
-        } else  {
-            this.gameScore.updateScore(isPlayer1);
-
+    public void updatePointScore(Action action) {
+        switch (action) {
+            case Action.WIN_PLAYER_1 -> this.gameScore.updateScore1();
+            case Action.WIN_PLAYER_2 -> this.gameScore.updateScore2();
+            default -> throw new IllegalStateException("Unexpected value: " + action);
         }
     }
 
-    public void resetGameScore(){
+    public void resetGameScore() {
         this.gameScore.reset();
     }
 
-    public void resetSetScore(){
+    public void resetSetScore() {
         this.setScore.reset();
     }
 
-    public void updateGamesAfterWin(){
-        int winnerId =  this.gameScore.getIdGameWinner();
-        if (winnerId == this.players.getFirst().getId()){
+    public void updateGamesAfterWin() {
+        int winnerId = this.gameScore.getIdGameWinner();
+        if (winnerId == this.players.getFirst().getId()) {
             this.setScore.updateScore1();
-        }
-        else
+        } else
             this.setScore.updateScore2();
     }
 
-    public void updateSetsAfterWin(){
-        int winnerId =  this.setScore.getIdGameWinner();
-        if (winnerId == this.players.getFirst().getId()){
+    public void updateSetsAfterWin() {
+        int winnerId = this.setScore.getIdGameWinner();
+        if (winnerId == this.players.getFirst().getId()) {
             this.matchScore.updateScore1();
-        }
-        else
+        } else
             this.matchScore.updateScore2();
     }
-    public void changeService(){
-        if (this.players.getFirst().getService()){
+
+    public void changeService() {
+        if (this.players.getFirst().getService()) {
             this.players.getFirst().setService(false);
             this.players.get(1).setService(true);
-        }
-        else{
+        } else {
             this.players.getFirst().setService(true);
             this.players.get(1).setService(false);
         }

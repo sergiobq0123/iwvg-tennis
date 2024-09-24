@@ -1,48 +1,36 @@
 package ivwg.tennis.controllers;
 
+import ivwg.tennis.models.Fault;
 import ivwg.tennis.models.ScoreBoard;
-
-import java.util.Random;
+import ivwg.tennis.types.Action;
 
 public class PointController {
 
-    private static final int MAX_CONSECUTIVE_FAULTS = 2;
     private final ScoreBoard scoreBoard;
-    private int consecutiveFaults=0;
+    private Fault fault;
 
     public PointController(ScoreBoard scoreBoard){
         this.scoreBoard = scoreBoard;
+        this.fault = new Fault();
     }
 
-    public void playPoint(){
-        Random random = new Random();
-        int action = random.nextInt(3);
-            switch (action) {
-                case 0 -> handleFault();
-                case 1 -> {
-                    this.scoreBoard.updatePointScore(false,true);
-                    this.resetConsecutiveFaults();
-                }
-                case 2 -> {
-                    this.scoreBoard.updatePointScore(false,false);
-                    this.resetConsecutiveFaults();
-                }
+    public void playPoint() {
+        Action action = Action.generateRandomAction();
+        if (action != Action.FAULT){
+            scoreBoard.updatePointScore(action);
+            fault.resetConsecutiveFaults();
+        }else {
+            handledFault();
         }
     }
 
-    private void handleFault() {
-        consecutiveFaults++;
-        if (consecutiveFaults != MAX_CONSECUTIVE_FAULTS) {
-            this.playPoint();
-            //Vista pintar
-        } else {
-            this.scoreBoard.updatePointScore(true, true);
-            resetConsecutiveFaults();
+    private void handledFault() {
+        fault.sumFault();
+        if(fault.isSecondFault()){
+            // GetServicePlayer()
+            fault.resetConsecutiveFaults();
+        }else {
+            playPoint();
         }
     }
-
-    private void resetConsecutiveFaults() {
-        consecutiveFaults = 0;
-    }
-
 }
