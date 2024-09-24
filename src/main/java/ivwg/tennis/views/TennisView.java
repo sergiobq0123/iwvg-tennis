@@ -1,25 +1,33 @@
 package ivwg.tennis.views;
 
-public class TennisView {
-    private RefereeView refereeView;
-    private PlayerView playerView;
-    private MatchView matchView;
+import ivwg.tennis.models.Player;
+import ivwg.utils.WithConsoleView;
 
-    public TennisView() {
-        this.refereeView = new RefereeView();
-        this.playerView = new PlayerView();
-        this.matchView = new MatchView();
-    }
+public class TennisView extends WithConsoleView {
+    private final RefereeView refereeView = new RefereeView();
+    private final PlayerView playerView = new PlayerView();
+    private final MatchView matchView = new MatchView();
+    private final SetView setView = new SetView();
+
 
     public void interact(){
-        //this.refereeView.addReferee();
-        //this.refereeView.login();
+         // this.refereeView.addReferee();
+        // this.refereeView.login();
 
         this.playerView.addPlayer();
         this.playerView.addPlayer();
         this.playerView.readPlayers();
 
-        this.matchView.addMatch();
-        this.matchView.readPlayers();
+        playMatch();
+
+    }
+
+    private void playMatch(){
+        this.console.writeln(MessageView.CREATE_MATCH.getMessage());
+        int numberSets = this.setView.readValidSets();
+        Player p1 = this.playerView.getPlayer(MessageView.PLAYER_1.getMessage());
+        Player p2 = this.playerView.getPlayer(MessageView.PLAYER_2.getMessage());
+
+        this.matchView.addMatch(numberSets, p1, p2);
     }
 }

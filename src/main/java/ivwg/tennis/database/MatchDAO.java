@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class MatchDAO {
 
-    private final ArrayList<Match> matchList = new ArrayList<>();
+    private static final ArrayList<Match> matchList = new ArrayList<>();
 
     public Stream<Match> findAll() {
         return matchList.stream();

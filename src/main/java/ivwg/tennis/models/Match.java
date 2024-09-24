@@ -9,18 +9,22 @@ public class Match {
     private int id;
     private List<Set> sets;
     private List<Player> players;
-    private MatchScore matchScore;
+    private ScoreBoard scoreBoard;
     private int numberSets;
     private Date date;
+    private int winnerId;
 
 
     public Match(int numberSets, List<Player> players) {
-        this.id = UUID.randomUUID().hashCode();
         this.numberSets = numberSets;
         this.players = players;
-        this.matchScore = new MatchScore();
+        this.scoreBoard = new ScoreBoard(this.numberSets, this.players);
         this.sets = new ArrayList<>();
         this.date = new Date(System.currentTimeMillis());
+    }
+
+    public boolean hasWinner(){
+        return this.scoreBoard.hasMatchWinner();
     }
 
     public int getId() {
@@ -47,14 +51,6 @@ public class Match {
         this.players = players;
     }
 
-    public MatchScore getMatchScore() {
-        return matchScore;
-    }
-
-    public void setMatchScore(MatchScore matchScore) {
-        this.matchScore = matchScore;
-    }
-
     public int getNumberSets() {
         return numberSets;
     }
@@ -71,6 +67,18 @@ public class Match {
         this.date = date;
     }
 
+    public void addSet(Set set){
+        this.sets.add(set);
+    }
+
+    public void addScorePlayer1(){
+        this.scoreBoard.addSet1();
+    }
+
+    public void addScorePlayer2(){
+        this.scoreBoard.addSet2();
+    }
+
     @Override
     public String toString() {
         return "Match: " +
@@ -79,5 +87,13 @@ public class Match {
                 "; setsNumber=" + numberSets +
                 "; players = " + players.toString();
 
+    }
+
+    public void updateMatch(){
+//        this.scoreBoard.updateMatchAfterWin();
+    }
+
+    public ScoreBoard getScoreBoard() {
+        return scoreBoard;
     }
 }

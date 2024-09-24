@@ -4,12 +4,12 @@ import ivwg.tennis.models.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 import java.util.stream.Stream;
 
 public class PlayerDAO {
 
-    private final ArrayList<Player> playerList = new ArrayList<>();
+    private static final ArrayList<Player> playerList = new ArrayList<>();
 
     public void addPlayer(Player player){
         playerList.add(player);
@@ -24,7 +24,7 @@ public class PlayerDAO {
                 .anyMatch(pl -> pl.getName().equals(name));
     }
 
-    public boolean existsById(UUID idPlayer) {
+    public boolean existsById(int idPlayer) {
         return this.findAll()
                 .anyMatch(pl -> pl.getId() == idPlayer);
     }
@@ -33,7 +33,7 @@ public class PlayerDAO {
         return playerList;
     }
 
-    public Player getPlayer(UUID id) {
+    public Player getPlayer(int id) {
         return this.findAll()
                 .filter(player -> player.getId() == id)
                 .findFirst()

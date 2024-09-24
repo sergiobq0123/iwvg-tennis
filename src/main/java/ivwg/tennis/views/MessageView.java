@@ -1,6 +1,6 @@
 package ivwg.tennis.views;
 
-public enum MessageView {
+public enum MessageView{
     SEPARATOR("-----------------------------------------------------"),
     START_GAME("---------------------- TENNIS -----------------------"),
     START_REFEREE_VIEW("-------------------- REFEREE --------------------"),
@@ -14,7 +14,9 @@ public enum MessageView {
     PLAYER_NOT_FOUND("Player not found"),
     CREATE_NUMBER_SETS("  - Sets : "),
     PLAYER_1("  - Player 1 : "),
-    PLAYER_2("  - Player 2 : ");
+    PLAYER_2("  - Player 2 : "),
+    ID("id:  "),
+    DATE("date:  ");
 
 
     private String message;

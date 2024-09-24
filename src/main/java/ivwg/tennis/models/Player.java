@@ -1,18 +1,14 @@
 package ivwg.tennis.models;
 
-import java.util.UUID;
+import ivwg.utils.Identifier;
 
-public class Player {
-    private UUID id;
+public class Player extends Identifier {
     private String name;
+    private boolean service;
 
     public Player(String name) {
-        this.id = UUID.randomUUID();
+        super();
         this.name = name;
-    }
-
-    public UUID getId() {
-        return id;
     }
 
     public String getName() {
@@ -22,8 +18,16 @@ public class Player {
     @Override
     public String toString() {
         return "Player{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public boolean getService() {
+        return service;
+    }
+
+    public void setService(boolean service) {
+        this.service = service;
     }
 }
