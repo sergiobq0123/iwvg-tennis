@@ -1,7 +1,5 @@
 package ivwg.utils;
 
-import ivwg.tennis.types.Error;
-
 public abstract class Identifier {
 
     private static int currentId = 0;

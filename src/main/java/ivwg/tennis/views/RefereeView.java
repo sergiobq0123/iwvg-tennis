@@ -11,11 +11,10 @@ public class RefereeView extends WithConsoleView {
     private final RefereeController refereeController = new RefereeController();
 
     public void addReferee() {
-        this.console.writeln(MessageView.CREATE_REFEREE.getMessage());
         Error error;
         do {
-            String name = this.console.readString(MessageView.CREATE_NAME.getMessage());
-            String password = this.console.readString(MessageView.CREATE_REFEREE_PASSWORD.getMessage());
+            String name = readName();
+            String password = readPassword();
 
             error = this.refereeController.addReferee(new Referee(name, password));
             this.handeldError(error);
@@ -23,16 +22,23 @@ public class RefereeView extends WithConsoleView {
     }
 
     public void login() {
-        this.console.writeln(MessageView.LOGIN_REFEREE.getMessage());
         Error error;
         do {
-            String name = this.console.readString(MessageView.CREATE_NAME.getMessage());
-            String password = this.console.readString(MessageView.CREATE_REFEREE_PASSWORD.getMessage());
+            String name = readName();
+            String password = readPassword();
 
             error = this.refereeController.login(name, password);
             this.handeldError(error);
         }while (!error.isNull());
 
+    }
+
+    private String readName() {
+        return this.console.readString(MessageView.CREATE_NAME.getMessage());
+    }
+
+    private String readPassword() {
+        return this.console.readString(MessageView.CREATE_REFEREE_PASSWORD.getMessage());
     }
 
 }

@@ -16,7 +16,9 @@ public enum MessageView{
     PLAYER_1("  - Player 1 : "),
     PLAYER_2("  - Player 2 : "),
     ID("id:  "),
-    DATE("date:  ");
+    DATE("date:  "),
+    READ_MATCH("Read Match"),
+    READ_PLAYER("Read Player");
 
 
     private String message;
