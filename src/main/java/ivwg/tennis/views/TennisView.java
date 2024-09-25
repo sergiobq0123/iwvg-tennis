@@ -27,7 +27,6 @@ public class TennisView extends WithConsoleView {
     }
 
     public void createMatch() {
-        this.console.writeln(MessageView.CREATE_MATCH.getMessage());
         int numberSets = this.setView.readValidSets();
         Player p1 = this.playerView.getPlayer(MessageView.PLAYER_1.getMessage());
         Player p2 = this.playerView.getPlayer(MessageView.PLAYER_2.getMessage());
