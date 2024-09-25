@@ -30,18 +30,14 @@ public class ScoreBoard {
         score.reset();
     }
 
-    public void addSet1() {
-        this.matchScore.updateScore1();
-    }
-
-    public void addSet2() {
-        this.matchScore.updateScore1();
+    public void updateScore(Score score,int i){
+        score.updateScore(i);
     }
 
     public void updatePointScore(Action action) {
         switch (action) {
-            case Action.WIN_PLAYER_1 -> this.gameScore.updateScore1();
-            case Action.WIN_PLAYER_2 -> this.gameScore.updateScore2();
+            case Action.WIN_PLAYER_1 -> this.updateScore(gameScore,0);
+            case Action.WIN_PLAYER_2 -> this.updateScore(gameScore,1);
             default -> throw new IllegalStateException("Unexpected value: " + action);
         }
     }
@@ -49,17 +45,17 @@ public class ScoreBoard {
     public void updateGamesAfterWin(){
         int winnerId =  this.gameScore.getIdGameWinner();
         if (winnerId == this.players.getFirst().getId()){
-            this.setScore.updateScore1();
+            this.updateScore(setScore,0);
         } else
-            this.setScore.updateScore2();
+            this.updateScore(setScore,1);
     }
 
     public void updateSetsAfterWin() {
         int winnerId = this.setScore.getIdGameWinner();
         if (winnerId == this.players.getFirst().getId()) {
-            this.matchScore.updateScore1();
+            this.updateScore(matchScore,0);
         } else
-            this.matchScore.updateScore2();
+            this.updateScore(matchScore,1);
     }
 
     public int getService(){
@@ -107,10 +103,10 @@ public class ScoreBoard {
 
     public void updatePointsFault(){
         if (this.players.getFirst().getService()) {
-            this.gameScore.updateScore2();
+            this.updateScore(gameScore,1);
         }
         else {
-            this.gameScore.updateScore1();
+            this.updateScore(gameScore,0);
         }
     }
 
