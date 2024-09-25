@@ -13,8 +13,8 @@ public class GameScore extends Score{
 
     @Override
     public boolean hasWinner(){
-        int score1 = this.getScorePlayer1();
-        int score2 = this.getScorePlayer2();
+        int score1 = this.getScore(0);
+        int score2 = this.getScore(1);
         if (score1 >= WINNING_POINTS && (score1 - score2) >= 2) {
             System.out.println("Ganador game player1");
             this.setIdGameWinner(this.getPlayers().getFirst().getId());
@@ -27,8 +27,8 @@ public class GameScore extends Score{
         return false;
     }
     public boolean hasWinnerTieBreak(){
-        int score1 = this.getScorePlayer1();
-        int score2 = this.getScorePlayer2();
+        int score1 = this.getScore(0);
+        int score2 = this.getScore(1);
         if (score1 >= TIEBREAK_WINNING_POINTS && (score1 - score2) >= 2) {
             System.out.println("Ganador Tiebreak player1");
             this.setIdGameWinner(this.getPlayers().getFirst().getId());
@@ -39,21 +39,5 @@ public class GameScore extends Score{
             return true;
         }
         return false;
-    }
-
-    public void fault(){
-        if (!this.getPlayers().getFirst().getService()){
-            this.updateScore1();
-        }
-        else
-            this.updateScore2();
-    }
-
-    public void updateScorePlayer1(){
-            this.updateScore1();
-    }
-
-    public void updateScorePlayer2(){
-        this.updateScore2();
     }
 }

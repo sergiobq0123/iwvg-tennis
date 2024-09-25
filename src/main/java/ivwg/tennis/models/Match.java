@@ -71,13 +71,6 @@ public class Match {
         this.sets.add(set);
     }
 
-    public void addScorePlayer1(){
-        this.scoreBoard.addSet1();
-    }
-
-    public void addScorePlayer2(){
-        this.scoreBoard.addSet2();
-    }
 
     @Override
     public String toString() {

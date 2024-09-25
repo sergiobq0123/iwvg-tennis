@@ -18,12 +18,12 @@ public class TennisView extends WithConsoleView {
 
     public void loginReferee() {
         this.refereeView.login();
-        this.displayStartMenu();
+        this.displayRefereeMenu();
     }
 
     public void createPlayer() {
         this.playerView.addPlayer();
-        displayStartMenu();
+        displayRefereeMenu();
     }
 
     public void createMatch() {
