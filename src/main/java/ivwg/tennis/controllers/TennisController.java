@@ -8,7 +8,7 @@ public class TennisController {
 
     void play() {
         this.tennisView = new TennisView();
-        this.tennisView.interact();
+        this.tennisView.displayStartMenu();
     }
 
     public static void main(String[] args) {

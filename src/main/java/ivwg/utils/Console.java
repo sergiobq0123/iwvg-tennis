@@ -41,6 +41,10 @@ public class Console {
         System.out.print(string);
     }
 
+    public void writeln() {
+        System.out.println();
+    }
+
     public void writeError(String format) {
         System.out.println("FORMAT ERROR! " + "Enter a " + format + " formatted value.");
     }
