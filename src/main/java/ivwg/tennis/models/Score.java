@@ -32,7 +32,7 @@ public abstract class Score {
         this.players = players;
     }
 
-    public int getIdGameWinner() {
+    public int getIdWinner() {
         return idGameWinner;
     }
 

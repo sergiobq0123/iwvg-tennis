@@ -35,9 +35,7 @@ public class ScoreBoard {
             this.service= this.serviceTiebreak;
             this.serviceTiebreak = -1;
         }
-        else {
-            this.service = updateService();
-        }
+        this.service = updateService();
     }
 
     public void resetScore(Score score){
@@ -49,7 +47,7 @@ public class ScoreBoard {
     }
 
     public void updateScoreAfterWin(Score updateScore, Score winnerScore){
-        int winnerId =  winnerScore.getIdGameWinner();
+        int winnerId =  winnerScore.getIdWinner();
         if (winnerId == this.players.getFirst().getId()){
             this.updateScore(updateScore,0);
         } else
