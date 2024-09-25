@@ -34,7 +34,7 @@ public class Set {
     }
 
     public void updateSets(){
-        this.scoreBoard.updateSetsAfterWin();
+        this.scoreBoard.updateScoreAfterWin(scoreBoard.getMatchScore(), scoreBoard.getSetScore());
     }
 
     public void resetScore(){

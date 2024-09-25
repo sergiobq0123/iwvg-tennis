@@ -9,7 +9,6 @@ public abstract class Game {
         this.scoreBoard = scoreBoard;
     }
 
-
     public abstract boolean hasWinner();
 
     public int getId() {
@@ -24,7 +23,7 @@ public abstract class Game {
         return scoreBoard;
     }
     public void updateGames(){
-        this.scoreBoard.updateGamesAfterWin();
+        this.scoreBoard.updateScoreAfterWin(scoreBoard.getSetScore(), scoreBoard.getGameScore());
     }
 
     public abstract void changeService();

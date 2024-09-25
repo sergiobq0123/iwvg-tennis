@@ -1,6 +1,5 @@
 package ivwg.tennis.models;
 
-
 public class StandardGame extends Game {
     public StandardGame(ScoreBoard scoreBoard) {
         super(scoreBoard);

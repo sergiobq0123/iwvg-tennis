@@ -22,7 +22,9 @@ public class GameController extends BaseDAO<Game> implements GameSelector {
     }
 
     public void playGame(Game game) {
+        game.resetScore();
         game.play(this);
+        game.updateGames();
     }
 
     private int generateUniqueId() {
@@ -31,18 +33,15 @@ public class GameController extends BaseDAO<Game> implements GameSelector {
 
     @Override
     public void playGame(StandardGame standardGame) {
-        standardGame.resetScore();
         standardGame.changeService();
         while(!standardGame.hasWinner()){
             this.pointController.playPoint(standardGame.getScoreBoard());
         }
-        standardGame.updateGames();
     }
 
     @Override
     public void playGame(TieBreakGame tiebreakGame) {
         System.out.println("Soy Tiebreak");
-        tiebreakGame.resetScore();
         tiebreakGame.changeService();
         int firstService = tiebreakGame.getService();
         while(!tiebreakGame.hasWinner()){
@@ -50,7 +49,6 @@ public class GameController extends BaseDAO<Game> implements GameSelector {
             this.pointController.playPoint(tiebreakGame.getScoreBoard());
         }
         tiebreakGame.updateService(firstService);
-        tiebreakGame.updateGames();
     }
 
 }

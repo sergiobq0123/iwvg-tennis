@@ -41,7 +41,6 @@ public class SetScore extends Score {
     private boolean checkNormalWinner(){
         if(getScore(0) >= WINNING_POINTS && (getScore(0) - getScore(1)) >= MINIMUM_LEAD){
             System.out.println("Ganador set player1");
-
             this.setIdGameWinner(this.getPlayers().getFirst().getId());
             return true;
         }
