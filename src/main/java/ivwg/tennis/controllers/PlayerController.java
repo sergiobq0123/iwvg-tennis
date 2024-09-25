@@ -7,10 +7,7 @@ import ivwg.tennis.types.Error;
 
 public class PlayerController extends BaseController<Player> {
 
-    private final BaseDAO<Player> playerDAO;
-
     public PlayerController() {
-        this.playerDAO = new BaseDAO<>();
     }
 
     public Error addPlayer(Player player) {

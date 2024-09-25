@@ -14,7 +14,7 @@ public abstract class Score {
         this.players = players;
     }
 
-    public int getScore(int i){
+    public int getScore(int i) {
         return this.score[i];
     }
 
@@ -39,7 +39,8 @@ public abstract class Score {
     public void setIdGameWinner(int idGameWinner) {
         this.idGameWinner = idGameWinner;
     }
-    public void reset(){
+
+    public void reset() {
         this.score[0] = 0;
         this.score[1] = 0;
     }

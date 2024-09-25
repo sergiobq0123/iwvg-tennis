@@ -9,10 +9,8 @@ import java.util.Objects;
 
 public class RefereeController extends BaseController<Referee> {
 
-    private final BaseDAO<Referee> refereeDAO;
 
     public RefereeController() {
-        this.refereeDAO = new BaseDAO<>();
     }
 
     public Error login(String name, String password) {

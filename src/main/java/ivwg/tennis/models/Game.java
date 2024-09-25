@@ -1,28 +1,23 @@
 package ivwg.tennis.models;
 
-public abstract class Game {
+import ivwg.utils.Identifier;
 
-    private int id;
-    private ScoreBoard scoreBoard;
+public abstract class Game extends Identifier {
 
-    public Game(ScoreBoard scoreBoard) {
+    private final ScoreBoard scoreBoard;
+
+    Game(ScoreBoard scoreBoard) {
+        super();
         this.scoreBoard = scoreBoard;
     }
 
     public abstract boolean hasWinner();
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public ScoreBoard getScoreBoard() {
         return scoreBoard;
     }
-    public void updateGames(){
+
+    public void updateGames() {
         this.scoreBoard.updateScoreAfterWin(scoreBoard.getSetScore(), scoreBoard.getGameScore());
     }
 
@@ -30,7 +25,7 @@ public abstract class Game {
 
     public abstract void play(GameSelector gameSelector);
 
-    public void resetScore(){
+    public void resetScore() {
         this.scoreBoard.resetScore(this.scoreBoard.getGameScore());
     }
 }

@@ -1,13 +1,14 @@
 package ivwg.tennis.models;
 
+import ivwg.utils.Identifier;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Set {
+public class Set extends Identifier {
 
-    private int id;
-    private List<Game> games;
-    private ScoreBoard scoreBoard;
+    private final List<Game> games;
+    private final ScoreBoard scoreBoard;
 
     public Set(ScoreBoard scoreBoard) {
         this.scoreBoard = scoreBoard;
@@ -18,14 +19,7 @@ public class Set {
         return this.scoreBoard.hasWinner(this.scoreBoard.getSetScore());
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    public void addGame(Game game){
+    public void addGame(Game game) {
         this.games.add(game);
     }
 
@@ -33,14 +27,15 @@ public class Set {
         return scoreBoard;
     }
 
-    public void updateSets(){
+    public void updateSets() {
         this.scoreBoard.updateScoreAfterWin(scoreBoard.getMatchScore(), scoreBoard.getSetScore());
     }
 
-    public void resetScore(){
+    public void resetScore() {
         this.scoreBoard.resetScore(this.scoreBoard.getSetScore());
     }
-    public int getActualGames(){
+
+    public int getActualGames() {
         return this.scoreBoard.getActualGames();
     }
 }

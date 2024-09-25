@@ -32,18 +32,22 @@ public class TennisView extends WithConsoleView {
         Player p2 = this.playerView.getPlayer(MessageView.PLAYER_2.getMessage());
 
         this.matchView.addMatch(numberSets, p1, p2);
+        displayRefereeMenu();
     }
 
     public void readPlayer() {
         this.playerView.readPlayers();
+        displayRefereeMenu();
     }
 
     public void readMatch() {
         this.matchView.readMatches();
+        displayRefereeMenu();
     }
 
     public void displayStartMenu() {
-        new StartMenu(this).execute();
+        //new StartMenu(this).execute();
+        this.matchView.addMatch(3, new Player("Sergio"), new Player("Adrian"));
     }
 
     public void displayRefereeMenu() {

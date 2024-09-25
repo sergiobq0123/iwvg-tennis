@@ -1,7 +1,9 @@
 package ivwg.tennis.models;
 
 
-public class TieBreakGame extends Game{
+public class TieBreakGame extends Game {
+
+    private static final int CONSECUTIVE_SERVICE = 2;
 
     int serviceCounter = 0;
 
@@ -16,19 +18,30 @@ public class TieBreakGame extends Game{
 
     @Override
     public void changeService() {
-        serviceCounter++;
-        if(serviceCounter == 2){
+        this.sumServiceCounter();
+        if (serviceCounter == CONSECUTIVE_SERVICE) {
             System.out.println("CAMBIO");
             this.getScoreBoard().changeService();
-            this.serviceCounter = 0;
+            resetServiceCounter();
         }
     }
-    public int getService(){
-       return this.getScoreBoard().getService();
+
+    private void sumServiceCounter() {
+        this.serviceCounter ++;
     }
-    public void updateService(int service){
+
+    public int getService() {
+        return this.getScoreBoard().getService();
+    }
+
+    private void resetServiceCounter() {
+        this.serviceCounter = 0;
+    }
+
+    public void updateService(int service) {
         this.getScoreBoard().setServiceTiebreak(service);
     }
+
     @Override
     public void play(GameSelector gameSelector) {
         gameSelector.playGame(this);

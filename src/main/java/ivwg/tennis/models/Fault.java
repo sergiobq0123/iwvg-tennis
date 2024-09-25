@@ -15,4 +15,8 @@ public class Fault {
     public boolean isSecondFault() {
         return consecutiveFaults >= MAX_CONSECUTIVE_FAULTS;
     }
+
+    public boolean isFault() {
+        return this.consecutiveFaults == 1;
+    }
 }

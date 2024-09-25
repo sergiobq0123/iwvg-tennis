@@ -40,4 +40,8 @@ public class MatchScore extends Score{
         }
             return false;
     }
+
+    public int getNumberSets() {
+        return numberSets;
+    }
 }

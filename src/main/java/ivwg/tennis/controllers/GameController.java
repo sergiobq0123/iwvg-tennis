@@ -9,26 +9,18 @@ import ivwg.tennis.models.TieBreakGame;
 public class GameController extends BaseDAO<Game> implements GameSelector {
 
     private final PointController pointController;
-    private final BaseDAO<Game> gameDAO;
-    private int nextId= 1;
 
     public GameController() {
-        gameDAO = new BaseDAO<>();
         pointController = new PointController();
     }
     public void addGame(Game game) {
-        game.setId(this.generateUniqueId());
-        this.gameDAO.addEntity(game);
+        this.addEntity(game);
     }
 
     public void playGame(Game game) {
         game.resetScore();
         game.play(this);
         game.updateGames();
-    }
-
-    private int generateUniqueId() {
-        return nextId++;
     }
 
     @Override

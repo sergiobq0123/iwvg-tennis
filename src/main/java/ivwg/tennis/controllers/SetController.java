@@ -8,19 +8,15 @@ import ivwg.tennis.models.Set;
 public class SetController extends BaseController<Set> {
 
     private final GameController gameController;
-    private final BaseDAO<Set> setDAO;
-    private int nextId= 1;
     private final GameFactory gameFactory;
 
     public SetController() {
         this.gameController = new GameController();
-        this.setDAO = new BaseDAO<>();
         this.gameFactory = new GameFactory();
     }
 
     public void addSet(Set set) {
-        set.setId(this.generateUniqueId());
-        this.setDAO.addEntity(set);
+        this.addEntity(set);
     }
 
     public void playSet(Set set){
@@ -32,9 +28,5 @@ public class SetController extends BaseController<Set> {
             this.gameController.playGame(game);
         }
         set.updateSets();
-    }
-
-    private int generateUniqueId() {
-        return nextId++;
     }
 }
