@@ -2,6 +2,7 @@ package ivwg.tennis.models;
 
 import ivwg.tennis.types.Action;
 import java.util.List;
+import java.util.Random;
 
 public class ScoreBoard {
 
@@ -9,9 +10,12 @@ public class ScoreBoard {
     private MatchScore matchScore;
     private GameScore gameScore;
     private List<Player> players;
-    private int idServiceTiebreak= -1;
+    private int service;
+    private int serviceTiebreak = -1;
 
     public ScoreBoard(int numberSets, List<Player> players) {
+        Random random = new Random();
+        service = random.nextInt(2);
         matchScore = new MatchScore(players, numberSets);
         setScore = new SetScore(players);
         gameScore = new GameScore(players);
@@ -25,6 +29,16 @@ public class ScoreBoard {
         return this.gameScore.hasWinnerTieBreak();
     }
 
+    public void changeService(){
+        if(this.serviceTiebreak != -1){
+            System.out.println("Cambio raro");
+            this.service= this.serviceTiebreak;
+            this.serviceTiebreak = -1;
+        }
+        else {
+            this.service = updateService();
+        }
+    }
 
     public void resetScore(Score score){
         score.reset();
@@ -59,30 +73,7 @@ public class ScoreBoard {
     }
 
     public int getService(){
-        if (this.players.getFirst().getService()) {
-            return this.players.getFirst().getId();
-        } else {
-            return this.players.get(1).getId();
-        }
-    }
-
-    public void changeService() {
-        if (this.players.getFirst().getService()) {
-            this.players.getFirst().setService(false);
-            this.players.get(1).setService(true);
-        } else {
-            this.players.getFirst().setService(true);
-            this.players.get(1).setService(false);
-        }
-    }
-    public void changeService(int id) {
-        if (this.players.getFirst().getId() == id) {
-            this.players.getFirst().setService(false);
-            this.players.get(1).setService(true);
-        } else {
-            this.players.getFirst().setService(true);
-            this.players.get(1).setService(false);
-        }
+        return this.service;
     }
 
     public int getActualGames(){
@@ -102,19 +93,14 @@ public class ScoreBoard {
     }
 
     public void updatePointsFault(){
-        if (this.players.getFirst().getService()) {
-            this.updateScore(gameScore,1);
-        }
-        else {
-            this.updateScore(gameScore,0);
-        }
+        this.updateScore(gameScore, this.updateService());
     }
 
-    public int getIdServiceTiebreak() {
-        return idServiceTiebreak;
+    public void setServiceTiebreak(int serviceTiebreak) {
+        this.serviceTiebreak = serviceTiebreak;
     }
 
-    public void setIdServiceTiebreak(int idServiceTiebreak) {
-        this.idServiceTiebreak = idServiceTiebreak;
+    private int updateService(){
+        return (this.service+1)%2;
     }
 }

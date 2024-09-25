@@ -23,11 +23,12 @@ public class TieBreakGame extends Game{
             this.serviceCounter = 0;
         }
     }
-    public void changeServiceX() {
-        this.getScoreBoard().changeService();
-        this.getScoreBoard().setIdServiceTiebreak(this.getScoreBoard().getService());
+    public int getService(){
+       return this.getScoreBoard().getService();
     }
-
+    public void updateService(int service){
+        this.getScoreBoard().setServiceTiebreak(service);
+    }
     @Override
     public void play(GameSelector gameSelector) {
         gameSelector.playGame(this);

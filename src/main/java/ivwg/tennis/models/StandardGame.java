@@ -14,7 +14,6 @@ public class StandardGame extends Game {
     @Override
     public void changeService() {
         this.getScoreBoard().changeService();
-
     }
 
     @Override
