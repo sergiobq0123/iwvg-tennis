@@ -25,7 +25,7 @@ public class PointController {
     private void handledFault(ScoreBoard scoreBoard) {
         fault.sumFault();
         if(fault.isSecondFault()){
-            // GetServicePlayer()
+            scoreBoard.updatePointsFault();
             fault.resetConsecutiveFaults();
         }else {
             playPoint(scoreBoard);

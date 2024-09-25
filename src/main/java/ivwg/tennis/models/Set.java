@@ -40,4 +40,7 @@ public class Set {
     public void resetScore(){
         this.scoreBoard.resetScore(this.scoreBoard.getSetScore());
     }
+    public int getActualGames(){
+        return this.scoreBoard.getActualGames();
+    }
 }

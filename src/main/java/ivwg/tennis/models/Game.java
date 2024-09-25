@@ -1,6 +1,6 @@
 package ivwg.tennis.models;
 
-public class Game {
+public abstract class Game {
 
     private int id;
     private ScoreBoard scoreBoard;
@@ -9,9 +9,8 @@ public class Game {
         this.scoreBoard = scoreBoard;
     }
 
-    public boolean hasWinner() {
-        return this.scoreBoard.hasWinner(this.getScoreBoard().getGameScore());
-    }
+
+    public abstract boolean hasWinner();
 
     public int getId() {
         return id;
@@ -28,9 +27,9 @@ public class Game {
         this.scoreBoard.updateGamesAfterWin();
     }
 
-    public void changeService(){
-        this.scoreBoard.changeService();
-    }
+    public abstract void changeService();
+
+    public abstract void play(GameSelector gameSelector);
 
     public void resetScore(){
         this.scoreBoard.resetScore(this.scoreBoard.getGameScore());

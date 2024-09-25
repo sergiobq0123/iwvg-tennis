@@ -52,4 +52,8 @@ public class SetScore extends Score {
         }
        return false;
     }
+
+    public int getActualGames(){
+        return this.getScorePlayer1() + this.getScorePlayer2();
+    }
 }
