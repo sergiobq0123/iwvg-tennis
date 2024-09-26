@@ -1,8 +1,8 @@
 package ivwg.tennis.models;
 
 public class StandardGame extends Game {
-    public StandardGame(ScoreBoard scoreBoard) {
-        super(scoreBoard);
+    public StandardGame(ScoreBoard scoreBoard, int setId) {
+        super(scoreBoard, setId);
     }
 
     @Override

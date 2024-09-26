@@ -6,7 +6,7 @@ import ivwg.tennis.models.GameSelector;
 import ivwg.tennis.models.StandardGame;
 import ivwg.tennis.models.TieBreakGame;
 
-public class GameController extends BaseDAO<Game> implements GameSelector {
+public class GameController extends BaseController<Game> implements GameSelector {
 
     private final PointController pointController;
 
@@ -21,6 +21,7 @@ public class GameController extends BaseDAO<Game> implements GameSelector {
         game.resetScore();
         game.play(this);
         game.updateGames();
+        this.updateEntity(g -> g.getId() == game.getId(), game);
     }
 
     @Override

@@ -2,12 +2,12 @@ package ivwg.tennis.models;
 
 public class GameFactory {
 
-    public Game createGame(int numberGames, ScoreBoard scoreBoard){
+    public Game createGame(int numberGames, ScoreBoard scoreBoard, int setId){
         if(numberGames < 12){
-            return new StandardGame(scoreBoard);
+            return new StandardGame(scoreBoard,setId);
         }
         else
-            return new TieBreakGame(scoreBoard);
+            return new TieBreakGame(scoreBoard,setId);
     }
 
 }

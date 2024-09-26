@@ -5,10 +5,12 @@ import ivwg.utils.Identifier;
 public abstract class Game extends Identifier {
 
     private final ScoreBoard scoreBoard;
+    private int setId;
 
-    Game(ScoreBoard scoreBoard) {
+    Game(ScoreBoard scoreBoard,int setId) {
         super();
         this.scoreBoard = scoreBoard;
+        this.setId = setId;
     }
 
     public abstract boolean hasWinner();

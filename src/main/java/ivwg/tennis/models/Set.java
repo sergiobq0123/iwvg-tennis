@@ -9,10 +9,12 @@ public class Set extends Identifier {
 
     private final List<Game> games;
     private final ScoreBoard scoreBoard;
+    private int matchID;
 
-    public Set(ScoreBoard scoreBoard) {
+    public Set(ScoreBoard scoreBoard, int matchID) {
         this.scoreBoard = scoreBoard;
         this.games = new ArrayList<>();
+        this.matchID = matchID;
     }
 
     public boolean hasWinner() {

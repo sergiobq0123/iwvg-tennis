@@ -37,4 +37,8 @@ public class BaseController<T> {
     public T getEntity(Predicate<T> predicate) {
         return baseDAO.getEntity(predicate);
     }
+
+    public void updateEntity(Predicate<T> predicate, T newItem) {
+        baseDAO.updateEntity(predicate, newItem);
+    }
 }

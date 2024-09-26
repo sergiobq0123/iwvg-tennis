@@ -1,11 +1,7 @@
 package ivwg.tennis.controllers;
 
-import ivwg.tennis.database.BaseDAO;
-import ivwg.tennis.models.Match;
 import ivwg.tennis.models.Player;
 import ivwg.tennis.types.Error;
-
-import java.util.Objects;
 
 public class PlayerController extends BaseController<Player> {
 

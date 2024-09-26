@@ -6,16 +6,12 @@ import ivwg.tennis.models.Set;
 
 import java.util.List;
 
-public class MatchController extends BaseDAO<Match>{
+public class MatchController extends BaseController<Match>{
 
     private final SetController setController;
 
     public MatchController() {
         setController = new SetController();
-    }
-
-    public List<Match> getMatches() {
-     return this.getEntities();
     }
 
     public void addMatch(Match match) {
@@ -24,13 +20,13 @@ public class MatchController extends BaseDAO<Match>{
 
     public void playMatch(Match match) {
         while(!match.hasWinner()){
-            Set set= new Set(match.getScoreBoard());
+            Set set= new Set(match.getScoreBoard(), match.getId());
             match.addSet(set);
             this.setController.addSet(set);
             this.setController.playSet(set);
             }
-        }
-//        this.matchDAO.updateMatch(match);
+        this.updateEntity(m -> m.getId() == match.getId(), match);
+    }
 }
 
 

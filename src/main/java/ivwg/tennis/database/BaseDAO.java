@@ -46,4 +46,12 @@ public class BaseDAO<T> {
         return findBy(predicate).orElse(null);
     }
 
+    public void updateEntity(Predicate<T> predicate, T newItem) {
+        Optional<T> existingEntity = findBy(predicate);
+        if (existingEntity.isPresent()) {
+            int index = itemList.indexOf(existingEntity.get());
+            itemList.set(index, newItem);
+        }
+    }
+
 }
