@@ -21,7 +21,6 @@ public class GameController extends BaseController<Game> implements GameSelector
         game.resetScore();
         game.play(this);
         game.updateGames();
-        this.updateEntity(g -> g.getId() == game.getId(), game);
     }
 
     @Override

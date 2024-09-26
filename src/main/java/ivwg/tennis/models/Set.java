@@ -8,7 +8,7 @@ import java.util.List;
 public class Set extends Identifier {
 
     private final List<Game> games;
-    private final ScoreBoard scoreBoard;
+    private ScoreBoard scoreBoard;
     private int matchID;
 
     public Set(ScoreBoard scoreBoard, int matchID) {
@@ -28,7 +28,9 @@ public class Set extends Identifier {
     public ScoreBoard getScoreBoard() {
         return scoreBoard;
     }
-
+    public void setScoreBoard( ScoreBoard scoreBoard ) {
+        this.scoreBoard = scoreBoard;
+    }
     public void updateSets() {
         this.scoreBoard.updateScoreAfterWin(scoreBoard.getMatchScore(), scoreBoard.getSetScore());
         SetScore setScoreCopy = scoreBoard.getSetScore().copy();
@@ -41,5 +43,12 @@ public class Set extends Identifier {
 
     public int getActualGames() {
         return this.scoreBoard.getActualGames();
+    }
+
+    public int getMatchID() {
+        return matchID;
+    }
+    public int getSetResult(int i){
+       return this.scoreBoard.getSetResult(i);
     }
 }

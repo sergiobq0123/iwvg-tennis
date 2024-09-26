@@ -10,8 +10,8 @@ public class MatchController extends BaseController<Match>{
 
     private final SetController setController;
 
-    public MatchController() {
-        setController = new SetController();
+    public MatchController(SetController setController) {
+        this.setController = setController;
     }
 
     public void addMatch(Match match) {

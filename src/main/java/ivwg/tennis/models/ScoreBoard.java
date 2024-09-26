@@ -162,4 +162,18 @@ public class ScoreBoard {
         scoreBoardView.displayScore();
     }
 
+    public int getSetResult(int i){
+        return this.setScore.getScore(i);
+    }
+
+    private void setSetScore(SetScore setScore) {
+        this.setScore = setScore;
+    }
+
+    public ScoreBoard copy(){
+        ScoreBoard copiedScoreBoard = new ScoreBoard(this.matchScore.getNumberSets(), this.players);
+        copiedScoreBoard.setSetScore(this.setScore.copy());
+        return copiedScoreBoard;
+    }
+
 }
