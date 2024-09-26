@@ -60,14 +60,17 @@ public class ScoreBoardView  extends WithConsoleView {
 
     private String getPoints(int i){
         int points= this.scoreBoard.getGameScore().getScore(i);
-        int pointFoe = this.scoreBoard.getSetScore().getScore((i+1)%2);
+        int pointFoe = this.scoreBoard.getGameScore().getScore((i+1)%2);
         if(points < 4){
             return scores[points];
         }
         else if(points == pointFoe){
             return "40";
         }
-        else{
+        else if ( points <pointFoe){
+            return "40";
+        }
+        else {
             return "AD";
         }
     }
