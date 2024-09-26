@@ -53,7 +53,7 @@ public class Match extends Identifier {
     public String toString() {
         String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(this.date);
 
-        return String.format("id :%d; date :%s; player1:%s; player2:%s; sets: ; %s",
+        return String.format("MatchId :%d; date :%s; player1:%s; player2:%s; sets: ; %s",
                 this.getId(),formattedDate, this.getPlayers().get(0), this.getPlayers().get(1),
                 this.getSets().size());
     }
