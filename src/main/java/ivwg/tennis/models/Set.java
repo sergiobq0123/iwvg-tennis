@@ -29,6 +29,8 @@ public class Set extends Identifier {
 
     public void updateSets() {
         this.scoreBoard.updateScoreAfterWin(scoreBoard.getMatchScore(), scoreBoard.getSetScore());
+        SetScore setScoreCopy = scoreBoard.getSetScore().copy();
+        this.scoreBoard.addSetGamesToView(setScoreCopy);
     }
 
     public void resetScore() {

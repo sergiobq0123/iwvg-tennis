@@ -44,4 +44,11 @@ public abstract class Score {
         this.score[0] = 0;
         this.score[1] = 0;
     }
+
+    protected void setScore(int[] score) {
+        this.score = score;
+    }
+    protected int[] getTotalScore() {
+        return this.score;
+    }
 }

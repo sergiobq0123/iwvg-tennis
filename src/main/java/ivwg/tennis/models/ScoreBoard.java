@@ -17,6 +17,7 @@ public class ScoreBoard {
     private int serviceTiebreak = -1;
     private final Fault fault;
     private PointType pointType;
+    private ScoreBoardView scoreBoardView;
 
     public ScoreBoard(int numberSets, List<Player> players) {
         Random random = new Random();
@@ -26,6 +27,7 @@ public class ScoreBoard {
         gameScore = new GameScore(players);
         this.players = players;
         this.fault = new Fault();
+        scoreBoardView= new ScoreBoardView(this);
     }
 
     public boolean hasWinner(Score score) {
@@ -50,6 +52,10 @@ public class ScoreBoard {
     }
 
     public void updateScore(Score score, int i) {
+        if(fault.isFault()){
+            this.resetFault();
+            System.out.println("Cambio fault");
+        }
         score.updateScore(i);
         if(i == this.service) {
             pointType = PointType.POINT_SERVICE;
@@ -72,22 +78,22 @@ public class ScoreBoard {
                 this.handledFault();
                 pointType = PointType.LACK_SERVICE;
             }
-            case Action.WIN_PLAYER_1 -> this.updateScore(gameScore, 0);
-            case Action.WIN_PLAYER_2 -> this.updateScore(gameScore, 1);
+            case Action.WIN_PLAYER_1 -> {
+                this.updateScore(gameScore, 0);
+            }
+            case Action.WIN_PLAYER_2 ->{
+                this.updateScore(gameScore, 1);
+            }
             default -> throw new IllegalStateException("Unexpected value: " + action);
         }
         this.displayScoreBoard();
     }
 
-    private void displayScoreBoard(){
-        new ScoreBoardView(this).displayScore();
-    }
-
     private void handledFault() {
         fault.sumFault();
         if(fault.isSecondFault()){
-            this.updatePointsFault();
             fault.resetConsecutiveFaults();
+            this.updateScore(gameScore, this.updateService());
         }
     }
 
@@ -115,16 +121,12 @@ public class ScoreBoard {
         return gameScore;
     }
 
-    public void updatePointsFault() {
-        this.updateScore(gameScore, this.updateService());
-    }
-
     public void setServiceTiebreak(int serviceTiebreak) {
         this.serviceTiebreak = serviceTiebreak;
     }
 
     private int updateService() {
-        return (this.service + 1) % 2;
+        return (service + 1) % 2;
     }
 
     public boolean isFault() {
@@ -141,6 +143,18 @@ public class ScoreBoard {
 
     public PointType getPointType() {
         return pointType;
+    }
+
+    public void resetFault(){
+        fault.resetConsecutiveFaults();
+    }
+
+    public void addSetGamesToView(SetScore setScore) {
+        SetScore previousScore = new SetScore(players);
+        scoreBoardView.addPlayedSet(setScore);
+    }
+    private void displayScoreBoard(){
+        scoreBoardView.displayScore();
     }
 
 }

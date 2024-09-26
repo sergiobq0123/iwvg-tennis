@@ -1,10 +1,8 @@
 package ivwg.tennis.controllers;
 
-import ivwg.tennis.database.BaseDAO;
 import ivwg.tennis.models.Referee;
 import ivwg.tennis.types.Error;
 
-import java.sql.Ref;
 import java.util.Objects;
 
 public class RefereeController extends BaseController<Referee> {

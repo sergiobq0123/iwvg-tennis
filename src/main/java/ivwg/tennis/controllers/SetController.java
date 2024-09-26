@@ -1,6 +1,5 @@
 package ivwg.tennis.controllers;
 
-import ivwg.tennis.database.BaseDAO;
 import ivwg.tennis.models.Game;
 import ivwg.tennis.models.GameFactory;
 import ivwg.tennis.models.Set;
