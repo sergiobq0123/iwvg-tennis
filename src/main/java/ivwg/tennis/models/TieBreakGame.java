@@ -20,7 +20,6 @@ public class TieBreakGame extends Game {
     public void changeService() {
         this.sumServiceCounter();
         if (serviceCounter == CONSECUTIVE_SERVICE) {
-            System.out.println("CAMBIO");
             this.getScoreBoard().changeService();
             resetServiceCounter();
         }

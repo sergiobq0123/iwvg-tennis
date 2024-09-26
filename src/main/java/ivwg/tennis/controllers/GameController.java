@@ -33,7 +33,6 @@ public class GameController extends BaseDAO<Game> implements GameSelector {
 
     @Override
     public void playGame(TieBreakGame tiebreakGame) {
-        System.out.println("Soy Tiebreak");
         tiebreakGame.changeService();
         int firstService = tiebreakGame.getService();
         while(!tiebreakGame.hasWinner()){

@@ -40,7 +40,6 @@ public class ScoreBoard {
 
     public void changeService() {
         if (this.serviceTiebreak != -1) {
-            System.out.println("Cambio raro");
             this.service = this.serviceTiebreak;
             this.serviceTiebreak = -1;
         }
@@ -60,7 +59,6 @@ public class ScoreBoard {
     private void resetFaultIfExists() {
         if(fault.isFault()){
             this.resetFault();
-            System.out.println("Cambio fault");
         }
     }
 
@@ -158,10 +156,9 @@ public class ScoreBoard {
     }
 
     public void addSetGamesToView(SetScore setScore) {
-        SetScore previousScore = new SetScore(players);
         scoreBoardView.addPlayedSet(setScore);
     }
-    private void displayScoreBoard(){
+    public void displayScoreBoard(){
         scoreBoardView.displayScore();
     }
 

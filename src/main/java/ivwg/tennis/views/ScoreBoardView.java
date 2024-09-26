@@ -50,13 +50,12 @@ public class ScoreBoardView  extends WithConsoleView {
         }
 
         this.console.writeln("match id:" + matchId + ">" + pointType);
-
-
-        String displayPlayer1 = String.format("%s %s: %s %s - -", player1Prefix, playerName1, pointsPlayer1, formatGames(gamesPlayer1));
-        String displayPlayer2 = String.format("%s %s: %s %s - -", player2Prefix, playerName2, pointsPlayer2,  formatGames(gamesPlayer2));
-
-        this.console.writeln(displayPlayer1);
-        this.console.writeln(displayPlayer2);
+        if(!this.scoreBoard.hasWinner(scoreBoard.getGameScore())){
+            String displayPlayer1 = String.format("%s %s: %s %s - -", player1Prefix, playerName1, pointsPlayer1, formatGames(gamesPlayer1));
+            String displayPlayer2 = String.format("%s %s: %s %s - -", player2Prefix, playerName2, pointsPlayer2,  formatGames(gamesPlayer2));
+            this.console.writeln(displayPlayer1);
+            this.console.writeln(displayPlayer2);
+        }
     }
 
     private String getPoints(int i){
@@ -81,11 +80,9 @@ public class ScoreBoardView  extends WithConsoleView {
         gamesPlayer1.add(this.scoreBoard.getSetScore().getScore(0));
         gamesPlayer2.add(this.scoreBoard.getSetScore().getScore(1));
 
-
         for (SetScore score : setScores) {
             gamesPlayer1.add(score.getScore(0));
             gamesPlayer2.add(score.getScore(1));
-
         }
     }
 

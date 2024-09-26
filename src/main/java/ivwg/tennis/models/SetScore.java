@@ -34,11 +34,9 @@ public class SetScore extends Score {
 
     private boolean checkWinnerTieBreak() {
         if (getScore(0) == WINNING_POINTS_TIE_BREAK) {
-            System.out.println("Ganador set player1");
             this.setIdGameWinner(this.getPlayers().getFirst().getId());
             return true;
         } else if (getScore(1) == WINNING_POINTS_TIE_BREAK) {
-            System.out.println("Ganador set player2");
             this.setIdGameWinner(this.getPlayers().get(1).getId());
             return true;
         }
@@ -47,11 +45,9 @@ public class SetScore extends Score {
 
     private boolean checkNormalWinner() {
         if (getScore(0) >= WINNING_POINTS && (getScore(0) - getScore(1)) >= MINIMUM_LEAD) {
-            System.out.println("Ganador set player1");
             this.setIdGameWinner(this.getPlayers().getFirst().getId());
             return true;
         } else if (getScore(1) >= WINNING_POINTS && (getScore(1) - getScore(0)) >= MINIMUM_LEAD) {
-            System.out.println("Ganador set player2");
             this.setIdGameWinner(this.getPlayers().get(1).getId());
             return true;
         }
