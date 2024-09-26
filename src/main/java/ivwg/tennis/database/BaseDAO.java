@@ -41,4 +41,9 @@ public class BaseDAO<T> {
     public List<T> getEntities() {
         return itemList;
     }
+
+    public T getEntity(Predicate<T> predicate) {
+        return findBy(predicate).orElse(null);
+    }
+
 }

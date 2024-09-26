@@ -20,9 +20,6 @@ public class Player extends Identifier {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "id=" + this.getId() +
-                ", name='" + name + '\'' +
-                '}';
+        return "Name : " + this.name + "; id : " + this.getId() ;
     }
 }

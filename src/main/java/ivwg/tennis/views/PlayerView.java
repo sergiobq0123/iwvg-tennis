@@ -24,6 +24,11 @@ public class PlayerView extends WithConsoleView {
         this.console.writeln(this.playerController.getAllEntities().toString());
     }
 
+    public void readPlayerById(int id){
+        Player optionalPlayer = playerController.getPlayer(id);
+        this.console.writeln(optionalPlayer.toString());
+    }
+
     public Player getPlayer(String message) {
         Player player = null;
         Error error;

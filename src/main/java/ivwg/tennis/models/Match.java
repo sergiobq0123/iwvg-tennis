@@ -2,6 +2,8 @@ package ivwg.tennis.models;
 
 import ivwg.utils.Identifier;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,18 +37,24 @@ public class Match extends Identifier {
         this.sets.add(set);
     }
 
-    @Override
-    public String toString() {
-        return "Match: " +
-                "id=" + this.getId() +
-                "; date=" + date +
-                "; setsNumber=" + numberSets +
-                "; players = " + players.toString();
-
+    public List<Player> getPlayers() {
+        return players;
     }
 
     public ScoreBoard getScoreBoard() {
         return scoreBoard;
     }
 
+    public List<Set> getSets() {
+        return sets;
+    }
+
+    @Override
+    public String toString() {
+        String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(this.date);
+
+        return String.format("date :%s; player1:%s; player2:%s; sets: ; %s",
+                formattedDate, this.getPlayers().get(0), this.getPlayers().get(1),
+                this.getSets().size());
+    }
 }

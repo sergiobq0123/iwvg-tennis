@@ -5,6 +5,8 @@ import ivwg.tennis.models.Match;
 import ivwg.tennis.models.Player;
 import ivwg.tennis.types.Error;
 
+import java.util.Objects;
+
 public class PlayerController extends BaseController<Player> {
 
     public PlayerController() {
@@ -17,5 +19,8 @@ public class PlayerController extends BaseController<Player> {
         }
         return Error.NULL_ERROR;
     }
-}
 
+    public Player getPlayer(int id){
+        return this.getEntity(p -> p.getId() == id);
+    }
+}

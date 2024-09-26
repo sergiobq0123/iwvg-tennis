@@ -52,11 +52,19 @@ public class ScoreBoard {
     }
 
     public void updateScore(Score score, int i) {
+        this.resetFaultIfExists();
+        score.updateScore(i);
+        this.setTypePoint(i);
+    }
+
+    private void resetFaultIfExists() {
         if(fault.isFault()){
             this.resetFault();
             System.out.println("Cambio fault");
         }
-        score.updateScore(i);
+    }
+
+    private void setTypePoint(int i){
         if(i == this.service) {
             pointType = PointType.POINT_SERVICE;
         }else {

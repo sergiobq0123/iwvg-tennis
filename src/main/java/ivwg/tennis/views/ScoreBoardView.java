@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ScoreBoardView  extends WithConsoleView {
     private final ScoreBoard scoreBoard;
-    private String[] scores = {"0", "15", "30", "40", "AD"};
+    private String[] scores = {"0 ", "15", "30", "40", "AD"};
 
     private List<SetScore> setScores;
 
@@ -21,7 +21,7 @@ public class ScoreBoardView  extends WithConsoleView {
 
     public void displayScore() {
 
-        String matchId = "1"; // Cambia esto al ID del match actual
+        String matchId = "1";
 
         String playerName1 = this.scoreBoard.getPlayers().get(0).getName();
         String playerName2 = this.scoreBoard.getPlayers().get(1).getName();

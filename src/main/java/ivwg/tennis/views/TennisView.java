@@ -27,6 +27,7 @@ public class TennisView extends WithConsoleView {
     }
 
     public void createMatch() {
+        this.playerView.readPlayers();
         int numberSets = this.setView.readValidSets();
         Player p1 = this.playerView.getPlayer(MessageView.PLAYER_1.getMessage());
         Player p2 = this.playerView.getPlayer(MessageView.PLAYER_2.getMessage());
@@ -37,17 +38,19 @@ public class TennisView extends WithConsoleView {
 
     public void readPlayer() {
         this.playerView.readPlayers();
-        displayRefereeMenu();
+        Player p1 = this.playerView.getPlayer(MessageView.PLAYER_1.getMessage());
+        this.playerView.readPlayerById(p1.getId());
+        this.matchView.readMatchesCompletedByPlayer(p1.getId());
+        this.displayRefereeMenu();
     }
 
     public void readMatch() {
-        this.matchView.readMatches();
-        displayRefereeMenu();
+        int idMatch = this.matchView.selectMatch();
+        this.matchView.readMatch(idMatch);
     }
 
     public void displayStartMenu() {
-        //new StartMenu(this).execute();
-        this.matchView.addMatch(3, new Player("Sergio"), new Player("Adrian"));
+        new StartMenu(this).execute();
     }
 
     public void displayRefereeMenu() {

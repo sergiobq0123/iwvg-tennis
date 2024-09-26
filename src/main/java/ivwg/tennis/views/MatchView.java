@@ -6,6 +6,7 @@ import ivwg.tennis.models.Player;
 import ivwg.utils.WithConsoleView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class MatchView extends WithConsoleView {
@@ -25,5 +26,22 @@ public class MatchView extends WithConsoleView {
         this.console.writeln(MessageView.ID.getMessage() + match.getId());
         this.console.writeln(MessageView.DATE.getMessage() + match.getDate());
         this.matchController.playMatch(match);
+    }
+
+    public int selectMatch() {
+        readMatches();
+        return this.console.readInt("Select Match");
+    }
+
+    public void readMatch(int idMatch) {
+        Match match = this.matchController.getEntity(m -> m.getId() == idMatch);
+        this.console.writeln(match.toString());
+    }
+
+    public void readMatchesCompletedByPlayer(int id) {
+        List<Match> matches = this.matchController.findAllBy(m -> m.getPlayers().stream().anyMatch(player -> player.getId() == id));
+        for (Match match : matches) {
+            this.console.writeln(match.toString());
+        }
     }
 }

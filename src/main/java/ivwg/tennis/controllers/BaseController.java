@@ -22,11 +22,19 @@ public class BaseController<T> {
         return baseDAO.findBy(predicate);
     }
 
+    public List<T> findAllEntitiesFilter(Predicate<T> predicate) {
+        return baseDAO.findAllBy(predicate);
+    }
+
     public boolean removeEntity(T item) {
         return baseDAO.removeEntity(item);
     }
 
     public boolean existEntity(Predicate<T> predicate) {
         return baseDAO.existEntity(predicate);
+    }
+
+    public T getEntity(Predicate<T> predicate) {
+        return baseDAO.getEntity(predicate);
     }
 }
