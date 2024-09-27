@@ -1,8 +1,6 @@
 package ivwg.tennis.models;
 
 import ivwg.utils.Identifier;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

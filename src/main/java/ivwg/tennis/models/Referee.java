@@ -1,7 +1,6 @@
 package ivwg.tennis.models;
 
 import ivwg.utils.Identifier;
-import ivwg.tennis.types.Error;
 
 public class Referee extends Identifier {
 

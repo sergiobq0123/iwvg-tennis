@@ -7,75 +7,81 @@ import ivwg.utils.WithConsoleView;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
-public class ScoreBoardView  extends WithConsoleView {
+public class ScoreBoardView extends WithConsoleView {
     private final ScoreBoard scoreBoard;
-    private String[] scores = {"0 ", "15", "30", "40", "AD"};
-
+    private static final String[] SCORES = {"0 ", "15", "30", "40", "AD"};
     private List<SetScore> setScores;
 
     public ScoreBoardView(ScoreBoard scoreBoard) {
         this.scoreBoard = scoreBoard;
-        this.setScores = new ArrayList<SetScore>();
+        this.setScores = new ArrayList<>();
     }
 
     public void displayScore() {
-
         String matchId = "1";
+        String pointType = getPointTypeMessage();
 
+        this.console.writeln("match id:" + matchId + ">" + pointType);
+        if (!this.scoreBoard.hasWinner(scoreBoard.getGameScore())) {
+            displayPlayerScores();
+        }
+    }
+
+    private String getPointTypeMessage() {
+        return switch (this.scoreBoard.getPointType()) {
+            case POINT_REST -> PointType.POINT_REST.getMessage();
+            case POINT_SERVICE -> PointType.POINT_SERVICE.getMessage();
+            case LACK_SERVICE -> PointType.LACK_SERVICE.getMessage();
+            default -> throw new IllegalStateException("Unexpected value: " + this.scoreBoard.getPointType());
+        };
+    }
+
+    private void displayPlayerScores() {
         String playerName1 = this.scoreBoard.getPlayers().get(0).getName();
         String playerName2 = this.scoreBoard.getPlayers().get(1).getName();
 
         String pointsPlayer1 = getPoints(0);
         String pointsPlayer2 = getPoints(1);
 
-        List<Integer> gamesPlayer1 = new ArrayList<Integer>();
-        List<Integer> gamesPlayer2 = new ArrayList<Integer>();
+        List<Integer> gamesPlayer1 = new ArrayList<>();
+        List<Integer> gamesPlayer2 = new ArrayList<>();
+        setGames(gamesPlayer1, gamesPlayer2);
 
-        this.setGames(gamesPlayer1,gamesPlayer2);
+        String player1Prefix = getPlayerPrefix(0);
+        String player2Prefix = getPlayerPrefix(1);
 
-        boolean isFault = this.scoreBoard.isFault();
-        int playerService = this.scoreBoard.getPlayerService();
-        int numberOfSets = this.scoreBoard.getNumberOfSets();
+        String displayPlayer1 = formatPlayerDisplay(player1Prefix, playerName1, pointsPlayer1, gamesPlayer1);
+        String displayPlayer2 = formatPlayerDisplay(player2Prefix, playerName2, pointsPlayer2, gamesPlayer2);
 
-        String player1Prefix = (0 == playerService) ? (isFault ? "+ " : "* ") : "  ";
-        String player2Prefix = (1 == playerService) ? (isFault ? "+ " : "* ") : "  ";
-
-        String pointType = "";
-        switch (this.scoreBoard.getPointType()) {
-            case POINT_REST -> pointType = PointType.POINT_REST.getMessage();
-            case POINT_SERVICE -> pointType = PointType.POINT_SERVICE.getMessage();
-            case LACK_SERVICE -> pointType = PointType.LACK_SERVICE.getMessage();
-            default -> throw new IllegalStateException("Unexpected value: " + this.scoreBoard.getPointType());
-        }
-
-        this.console.writeln("match id:" + matchId + ">" + pointType);
-        if(!this.scoreBoard.hasWinner(scoreBoard.getGameScore())){
-            String displayPlayer1 = String.format("%s %s: %s %s - -", player1Prefix, playerName1, pointsPlayer1, formatGames(gamesPlayer1));
-            String displayPlayer2 = String.format("%s %s: %s %s - -", player2Prefix, playerName2, pointsPlayer2,  formatGames(gamesPlayer2));
-            this.console.writeln(displayPlayer1);
-            this.console.writeln(displayPlayer2);
-        }
+        this.console.writeln(displayPlayer1);
+        this.console.writeln(displayPlayer2);
     }
 
-    private String getPoints(int i){
-        int points= this.scoreBoard.getGameScore().getScore(i);
-        int pointFoe = this.scoreBoard.getGameScore().getScore((i+1)%2);
-        if(points < 4){
-            return scores[points];
-        }
-        else if(points == pointFoe){
+    private String getPlayerPrefix(int playerIndex) {
+        boolean isServing = playerIndex == this.scoreBoard.getPlayerService();
+        boolean isFault = this.scoreBoard.isFault();
+        return isServing ? (isFault ? "+ " : "* ") : "  ";
+    }
+
+    private String formatPlayerDisplay(String prefix, String name, String points, List<Integer> games) {
+        return String.format("%s %s: %s %s - -", prefix, name, points, formatGames(games));
+    }
+
+    private String getPoints(int playerIndex) {
+        int points = this.scoreBoard.getGameScore().getScore(playerIndex);
+        int pointFoe = this.scoreBoard.getGameScore().getScore((playerIndex + 1) % 2);
+        if (points < 4) {
+            return SCORES[points];
+        } else if (points == pointFoe || points < pointFoe) {
             return "40";
-        }
-        else if ( points <pointFoe){
-            return "40";
-        }
-        else {
+        } else {
             return "AD";
         }
     }
 
-    public void addPlayedSet(SetScore score){
+    public void addPlayedSet(SetScore score) {
         this.setScores.add(score);
     }
 
@@ -90,17 +96,12 @@ public class ScoreBoardView  extends WithConsoleView {
     }
 
     private String formatGames(List<Integer> games) {
-        StringBuilder formattedGames = new StringBuilder();
-        for (int i = 0; i < games.size(); i++) {
-            formattedGames.append(games.get(i));
-            if (i < games.size() - 1) {
-                formattedGames.append(" ");
-            }
-        }
-        return formattedGames.toString();
+        return games.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(" "));
     }
 
     public void score() {
-
+        // Implementación pendiente
     }
 }

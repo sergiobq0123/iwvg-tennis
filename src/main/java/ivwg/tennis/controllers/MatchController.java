@@ -1,11 +1,7 @@
 package ivwg.tennis.controllers;
 
-import ivwg.tennis.database.BaseDAO;
 import ivwg.tennis.models.Match;
 import ivwg.tennis.models.Set;
-
-import java.util.List;
-
 public class MatchController extends BaseController<Match>{
 
     private final SetController setController;
