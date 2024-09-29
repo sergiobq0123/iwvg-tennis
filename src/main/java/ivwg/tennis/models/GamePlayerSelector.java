@@ -1,6 +1,6 @@
 package ivwg.tennis.models;
 
-public interface GameSelector {
+public interface GamePlayerSelector {
     void playGame(TieBreakGame tiebreakGame);
     void playGame(StandardGame standardGame);
 }

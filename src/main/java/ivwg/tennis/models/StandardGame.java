@@ -7,7 +7,8 @@ public class StandardGame extends Game {
 
     @Override
     public boolean hasWinner() {
-        return this.getScoreBoard().hasWinner(this.getScoreBoard().getGameScore());
+        this.getScoreBoard().setTiebreak(false);
+        return super.hasWinner();
     }
 
     @Override
@@ -16,7 +17,7 @@ public class StandardGame extends Game {
     }
 
     @Override
-    public void play(GameSelector gameSelector) {
+    public void play(GamePlayerSelector gameSelector) {
         gameSelector.playGame(this);
     }
 }

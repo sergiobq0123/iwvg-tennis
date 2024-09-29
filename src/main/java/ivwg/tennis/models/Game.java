@@ -11,7 +11,9 @@ public abstract class Game extends Identifier {
         this.scoreBoard = scoreBoard;
     }
 
-    public abstract boolean hasWinner();
+    public boolean hasWinner(){
+        return this.getScoreBoard().hasWinner(this.getScoreBoard().getGameScore());
+    }
 
     public ScoreBoard getScoreBoard() {
         return scoreBoard;
@@ -23,7 +25,7 @@ public abstract class Game extends Identifier {
 
     public abstract void changeService();
 
-    public abstract void play(GameSelector gameSelector);
+    public abstract void play(GamePlayerSelector gameSelector);
 
     public void resetScore() {
         this.scoreBoard.resetScore(this.scoreBoard.getGameScore());

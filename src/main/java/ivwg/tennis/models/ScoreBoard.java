@@ -34,8 +34,8 @@ public class ScoreBoard {
         return score.hasWinner();
     }
 
-    public boolean hasWinnerTieBreak() {
-        return this.gameScore.hasWinnerTieBreak();
+    public void setTiebreak(boolean tiebreaK){
+        this.gameScore.setTieBreak(tiebreaK);
     }
 
     public void changeService() {

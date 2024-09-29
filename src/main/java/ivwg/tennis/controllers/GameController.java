@@ -1,11 +1,11 @@
 package ivwg.tennis.controllers;
 
 import ivwg.tennis.models.Game;
-import ivwg.tennis.models.GameSelector;
+import ivwg.tennis.models.GamePlayerSelector;
 import ivwg.tennis.models.StandardGame;
 import ivwg.tennis.models.TieBreakGame;
 
-public class GameController extends BaseController<Game> implements GameSelector {
+public class GameController extends BaseController<Game> implements GamePlayerSelector {
 
     private final PointController pointController;
 

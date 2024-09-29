@@ -13,7 +13,8 @@ public class TieBreakGame extends Game {
 
     @Override
     public boolean hasWinner() {
-        return this.getScoreBoard().hasWinnerTieBreak();
+        this.getScoreBoard().setTiebreak(true);
+        return super.hasWinner();
     }
 
     @Override
@@ -42,7 +43,7 @@ public class TieBreakGame extends Game {
     }
 
     @Override
-    public void play(GameSelector gameSelector) {
+    public void play(GamePlayerSelector gameSelector) {
         gameSelector.playGame(this);
     }
 
