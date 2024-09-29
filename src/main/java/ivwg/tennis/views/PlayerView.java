@@ -1,5 +1,6 @@
 package ivwg.tennis.views;
 
+import ivwg.tennis.controllers.MatchController;
 import ivwg.tennis.controllers.PlayerController;
 import ivwg.tennis.models.Player;
 import ivwg.tennis.types.Error;
@@ -8,7 +9,13 @@ import ivwg.utils.WithConsoleView;
 import java.util.Optional;
 
 public class PlayerView extends WithConsoleView {
-    private final PlayerController playerController = new PlayerController();
+    private final PlayerController playerController;
+    private final MatchController matchController;
+
+    public PlayerView(PlayerController playerController, MatchController matchController) {
+        this.playerController = playerController;
+        this.matchController = matchController;
+    }
 
     public void addPlayer() {
         this.console.writeln(MessageView.CREATE_PLAYER.getMessage());
@@ -27,6 +34,12 @@ public class PlayerView extends WithConsoleView {
     public void readPlayerById(int id){
         Player optionalPlayer = playerController.getEntity(m -> m.getId() == id);
         this.console.writeln(optionalPlayer.toString());
+
+    }
+
+    public void readPlayerWinPercentage(int id){
+        double winPercentage = matchController.getMatchWinPercentage(id);
+        console.writeln("Win: "+winPercentage + "%");
     }
 
     public Player getPlayer(String message) {

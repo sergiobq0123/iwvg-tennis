@@ -1,14 +1,22 @@
 package ivwg.tennis.views;
 
+import ivwg.tennis.controllers.MatchController;
+import ivwg.tennis.controllers.PlayerController;
+import ivwg.tennis.controllers.SetController;
 import ivwg.tennis.models.Player;
 import ivwg.tennis.views.menu.RefereeMenu;
 import ivwg.tennis.views.menu.StartMenu;
 import ivwg.utils.WithConsoleView;
 
 public class TennisView extends WithConsoleView {
+
+    SetController setController = new SetController();
+    MatchController matchController = new MatchController(setController);
+    PlayerController playerController = new PlayerController();
+
     private final RefereeView refereeView = new RefereeView();
-    private final PlayerView playerView = new PlayerView();
-    private final MatchView matchView = new MatchView();
+    private final PlayerView playerView = new PlayerView(playerController,matchController);
+    private final MatchView matchView = new MatchView(matchController);
     private final SetView setView = new SetView();
 
     public void createReferee() {
@@ -41,12 +49,14 @@ public class TennisView extends WithConsoleView {
         Player p1 = this.playerView.getPlayer(MessageView.PLAYER_1.getMessage());
         this.playerView.readPlayerById(p1.getId());
         this.matchView.readMatchesCompletedByPlayer(p1.getId());
+        this.playerView.readPlayerWinPercentage(p1.getId());
         this.displayRefereeMenu();
     }
 
     public void readMatch() {
         int idMatch = this.matchView.selectMatch();
         this.matchView.readMatch(idMatch);
+        this.displayRefereeMenu();
     }
 
     public void displayStartMenu() {

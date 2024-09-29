@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class GenericDao<T> {
 
     private final List<T> itemList = new ArrayList<>();
-
-    public Stream<T> findAll() {
-        return itemList.stream();
-    }
 
     public T addEntity(T item) {
         if (!existEntity(entity -> entity.equals(item))) {
@@ -53,5 +48,4 @@ public class GenericDao<T> {
             itemList.set(index, newItem);
         }
     }
-
 }

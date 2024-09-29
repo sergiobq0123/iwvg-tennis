@@ -7,7 +7,7 @@ public abstract class Score {
     private int[] score;
 
     private int idWinner;
-    private List<Player> players;
+    private final List<Player> players;
 
     public Score(List<Player> players) {
         this.score = new int[2];
@@ -44,7 +44,7 @@ public abstract class Score {
     protected void setScore(int[] score) {
         this.score = score;
     }
-    protected int[] getTotalScore() {
+    public int[] getTotalScore() {
         return this.score;
     }
 }

@@ -6,7 +6,7 @@ public abstract class Game extends Identifier {
 
     private final ScoreBoard scoreBoard;
 
-    Game(ScoreBoard scoreBoard,int setId) {
+    Game(ScoreBoard scoreBoard) {
         super();
         this.scoreBoard = scoreBoard;
     }

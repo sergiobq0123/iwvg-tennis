@@ -7,8 +7,8 @@ public class TieBreakGame extends Game {
 
     int serviceCounter = 0;
 
-    public TieBreakGame(ScoreBoard scoreBoard,int setId) {
-        super(scoreBoard,setId);
+    public TieBreakGame(ScoreBoard scoreBoard) {
+        super(scoreBoard);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class SetController extends GenericController<Set> {
     public void playSet(Set set){
         set.resetScore();
         while(!set.hasWinner()){
-            Game game= gameFactory.createGame(set.getActualGames(),set.getScoreBoard(),set.getId());
+            Game game= gameFactory.createGame(set.getActualGames(),set.getScoreBoard());
             set.addGame(game);
             this.gameController.playGame(game);
         }

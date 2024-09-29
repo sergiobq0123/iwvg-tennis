@@ -8,8 +8,6 @@ public class SetScore extends Score {
     private static final int WINNING_POINTS_TIE_BREAK = 7;
     private static final int MINIMUM_LEAD = 2;
 
-    private boolean tieBreak;
-
     public SetScore(List<Player> players) {
         super(players);
     }
@@ -22,35 +20,20 @@ public class SetScore extends Score {
 
     @Override
     public boolean hasWinner() {
-        if (this.getScore(0) == WINNING_POINTS && this.getScore(1) == WINNING_POINTS) {
-            this.tieBreak = true;
-        }
-        if (tieBreak)
-            return checkWinnerTieBreak();
-        else
-            return checkNormalWinner();
-    }
-
-    private boolean checkWinnerTieBreak() {
-        if (getScore(0) == WINNING_POINTS_TIE_BREAK) {
+        int scorePlayer1 = getScore(0);
+        int scorePlayer2 = getScore(1);
+        if (checkWinPlayer(scorePlayer1,scorePlayer2)) {
             this.setIdWinner(this.getPlayers().getFirst().getId());
             return true;
-        } else if (getScore(1) == WINNING_POINTS_TIE_BREAK) {
+        } else if (checkWinPlayer(scorePlayer2,scorePlayer1)) {
             this.setIdWinner(this.getPlayers().get(1).getId());
             return true;
         }
         return false;
     }
 
-    private boolean checkNormalWinner() {
-        if (getScore(0) >= WINNING_POINTS && (getScore(0) - getScore(1)) >= MINIMUM_LEAD) {
-            this.setIdWinner(this.getPlayers().getFirst().getId());
-            return true;
-        } else if (getScore(1) >= WINNING_POINTS && (getScore(1) - getScore(0)) >= MINIMUM_LEAD) {
-            this.setIdWinner(this.getPlayers().get(1).getId());
-            return true;
-        }
-        return false;
+    private boolean checkWinPlayer(int scorePlayer1, int scorePlayer2) {
+       return scorePlayer1 == WINNING_POINTS_TIE_BREAK ||scorePlayer1 >= WINNING_POINTS && (scorePlayer1 - scorePlayer2) >= MINIMUM_LEAD;
     }
 
     public int getActualGames() {

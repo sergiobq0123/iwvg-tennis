@@ -11,14 +11,14 @@ import java.util.Random;
 public class ScoreBoard {
 
     private SetScore setScore;
-    private MatchScore matchScore;
-    private GameScore gameScore;
-    private List<Player> players;
+    private final MatchScore matchScore;
+    private final GameScore gameScore;
+    private final List<Player> players;
     private int service;
     private Optional<Integer> serviceTiebreak = Optional.empty();
     private final Fault fault;
     private PointType pointType;
-    private ScoreBoardView scoreBoardView;
+    private final ScoreBoardView scoreBoardView;
 
     public ScoreBoard(int numberSets, List<Player> players) {
         Random random = new Random();
@@ -35,8 +35,8 @@ public class ScoreBoard {
         return score.hasWinner();
     }
 
-    public void setTiebreak(boolean tiebreaK){
-        this.gameScore.setTieBreak(tiebreaK);
+    public void setTiebreak(boolean tiebreak){
+        this.gameScore.setTieBreak(tiebreak);
     }
 
     public void changeService() {
@@ -79,12 +79,10 @@ public class ScoreBoard {
                 this.handledFault();
                 pointType = PointType.LACK_SERVICE;
             }
-            case Action.WIN_PLAYER_1 -> {
+            case Action.WIN_PLAYER_1 ->
                 this.updateScore(gameScore, 0);
-            }
-            case Action.WIN_PLAYER_2 ->{
+            case Action.WIN_PLAYER_2 ->
                 this.updateScore(gameScore, 1);
-            }
             default -> throw new IllegalStateException("Unexpected value: " + action);
         }
         this.displayScoreBoard();

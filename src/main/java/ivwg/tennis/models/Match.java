@@ -7,18 +7,16 @@ import java.util.Date;
 import java.util.List;
 
 public class Match extends Identifier {
-    private List<Set> sets;
-    private List<Player> players;
-    private ScoreBoard scoreBoard;
-    private int numberSets;
-    private Date date;
+    private final List<Set> sets;
+    private final List<Player> players;
+    private final ScoreBoard scoreBoard;
+    private final Date date;
 
 
     public Match(int numberSets, List<Player> players) {
         super();
-        this.numberSets = numberSets;
         this.players = players;
-        this.scoreBoard = new ScoreBoard(this.numberSets, this.players);
+        this.scoreBoard = new ScoreBoard(numberSets, this.players);
         this.sets = new ArrayList<>();
         this.date = new Date(System.currentTimeMillis());
     }
@@ -51,7 +49,7 @@ public class Match extends Identifier {
     public String toString() {
         String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(this.date);
 
-        return String.format("MatchId :%d; date :%s; player1:%s; player2:%s; sets: ; %s",
+        return String.format("MatchId :%d; date :%s; player1:%s; player2:%s; sets: %s",
                 this.getId(),formattedDate, this.getPlayers().get(0), this.getPlayers().get(1),
                 this.getSets().size());
     }
