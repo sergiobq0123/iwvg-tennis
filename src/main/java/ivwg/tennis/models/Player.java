@@ -14,10 +14,6 @@ public class Player extends Identifier {
         return name;
     }
 
-    public Player copy() {
-        return new Player(this.name);
-    }
-
     @Override
     public String toString() {
         return "Name : " + this.name + "; id : " + this.getId() ;

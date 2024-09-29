@@ -1,14 +1,14 @@
 package ivwg.tennis.controllers;
 
-import ivwg.tennis.database.BaseDAO;
+import ivwg.tennis.database.GenericDao;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class BaseController<T> {
+public class GenericController<T> {
 
-    private final BaseDAO<T> baseDAO = new BaseDAO<>();
+    private final GenericDao<T> baseDAO = new GenericDao<>();
 
     public T addEntity(T item) {
         return baseDAO.addEntity(item);

@@ -9,7 +9,7 @@ public class Set extends Identifier {
 
     private final List<Game> games;
     private ScoreBoard scoreBoard;
-    private int matchID;
+    private final int matchID;
 
     public Set(ScoreBoard scoreBoard, int matchID) {
         this.scoreBoard = scoreBoard;

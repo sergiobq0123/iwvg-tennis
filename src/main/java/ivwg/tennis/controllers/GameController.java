@@ -5,15 +5,12 @@ import ivwg.tennis.models.GamePlayerSelector;
 import ivwg.tennis.models.StandardGame;
 import ivwg.tennis.models.TieBreakGame;
 
-public class GameController extends BaseController<Game> implements GamePlayerSelector {
+public class GameController extends GenericController<Game> implements GamePlayerSelector {
 
     private final PointController pointController;
 
     public GameController() {
         pointController = new PointController();
-    }
-    public void addGame(Game game) {
-        this.addEntity(game);
     }
 
     public void playGame(Game game) {

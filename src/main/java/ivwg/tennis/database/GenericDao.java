@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class BaseDAO<T> {
+public class GenericDao<T> {
 
     private final List<T> itemList = new ArrayList<>();
 

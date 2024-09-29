@@ -159,7 +159,7 @@ public class ScoreBoard {
         scoreBoardView.addPlayedSet(setScore);
     }
     public void displayScoreBoard(){
-        scoreBoardView.displayScore();
+        scoreBoardView.displayScore(this.gameScore.isTieBreak());
     }
 
     public int getSetResult(int i){

@@ -28,10 +28,6 @@ public abstract class Score {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
     public int getIdWinner() {
         return idGameWinner;
     }

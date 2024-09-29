@@ -5,7 +5,7 @@ import ivwg.tennis.models.GameFactory;
 import ivwg.tennis.models.ScoreBoard;
 import ivwg.tennis.models.Set;
 
-public class SetController extends BaseController<Set> {
+public class SetController extends GenericController<Set> {
 
     private final GameController gameController;
     private final GameFactory gameFactory;

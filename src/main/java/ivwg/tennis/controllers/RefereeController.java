@@ -5,7 +5,7 @@ import ivwg.tennis.types.Error;
 
 import java.util.Objects;
 
-public class RefereeController extends BaseController<Referee> {
+public class RefereeController extends GenericController<Referee> {
 
 
     public RefereeController() {

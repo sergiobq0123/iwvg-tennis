@@ -1,6 +1,5 @@
 package ivwg.tennis.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SetScore extends Score {
@@ -59,13 +58,8 @@ public class SetScore extends Score {
     }
 
     public SetScore copy(){
-        List<Player> playerCopies = new ArrayList<>();
-        for (Player player : this.getPlayers()) {
-            playerCopies.add(player.copy());
-        }
         int[] scoreCopy = this.getTotalScore().clone();
-
-        return new SetScore(playerCopies, scoreCopy, this.getIdWinner());
+        return new SetScore(this.getPlayers(), scoreCopy, this.getIdWinner());
     }
 
 }

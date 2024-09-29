@@ -33,4 +33,8 @@ public class GameScore extends Score {
     public void setTieBreak(boolean tieBreak) {
         isTieBreak = tieBreak;
     }
+
+    public boolean isTieBreak() {
+        return isTieBreak;
+    }
 }

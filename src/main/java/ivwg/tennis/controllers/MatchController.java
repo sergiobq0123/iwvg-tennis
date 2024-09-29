@@ -2,7 +2,7 @@ package ivwg.tennis.controllers;
 
 import ivwg.tennis.models.Match;
 import ivwg.tennis.models.Set;
-public class MatchController extends BaseController<Match>{
+public class MatchController extends GenericController<Match> {
 
     private final SetController setController;
 

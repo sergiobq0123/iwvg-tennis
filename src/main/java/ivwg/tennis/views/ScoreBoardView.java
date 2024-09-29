@@ -19,13 +19,13 @@ public class ScoreBoardView extends WithConsoleView {
         this.setScores = new ArrayList<>();
     }
 
-    public void displayScore() {
+    public void displayScore( boolean isTiebreak) {
         String matchId = "1";
         String pointType = getPointTypeMessage();
 
         this.console.writeln("match id:" + matchId + ">" + pointType);
         if (!this.scoreBoard.hasWinner(scoreBoard.getGameScore())) {
-            displayPlayerScores();
+            displayPlayerScores(isTiebreak);
         }
     }
 
@@ -38,12 +38,12 @@ public class ScoreBoardView extends WithConsoleView {
         };
     }
 
-    private void displayPlayerScores() {
+    private void displayPlayerScores(boolean isTiebreak) {
         String playerName1 = this.scoreBoard.getPlayers().get(0).getName();
         String playerName2 = this.scoreBoard.getPlayers().get(1).getName();
 
-        String pointsPlayer1 = getPoints(0);
-        String pointsPlayer2 = getPoints(1);
+        String pointsPlayer1 = getPoints(0, isTiebreak);
+        String pointsPlayer2 = getPoints(1, isTiebreak);
 
         List<Integer> gamesPlayer1 = new ArrayList<>();
         List<Integer> gamesPlayer2 = new ArrayList<>();
@@ -69,8 +69,11 @@ public class ScoreBoardView extends WithConsoleView {
         return String.format("%s %s: %s %s - -", prefix, name, points, formatGames(games));
     }
 
-    private String getPoints(int playerIndex) {
+    private String getPoints(int playerIndex, boolean tiebreak) {
         int points = this.scoreBoard.getGameScore().getScore(playerIndex);
+        if(tiebreak) {
+            return String.valueOf(points);
+        }
         int pointFoe = this.scoreBoard.getGameScore().getScore((playerIndex + 1) % 2);
         if (points < 4) {
             return SCORES[points];
@@ -101,7 +104,4 @@ public class ScoreBoardView extends WithConsoleView {
                 .collect(Collectors.joining(" "));
     }
 
-    public void score() {
-        // Implementación pendiente
-    }
 }

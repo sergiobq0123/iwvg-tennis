@@ -3,7 +3,7 @@ package ivwg.tennis.controllers;
 import ivwg.tennis.models.Player;
 import ivwg.tennis.types.Error;
 
-public class PlayerController extends BaseController<Player> {
+public class PlayerController extends GenericController<Player> {
 
     public PlayerController() {
     }
@@ -14,9 +14,5 @@ public class PlayerController extends BaseController<Player> {
             return Error.DUPLICATE_PLAYER;
         }
         return Error.NULL_ERROR;
-    }
-
-    public Player getPlayer(int id){
-        return this.getEntity(p -> p.getId() == id);
     }
 }
