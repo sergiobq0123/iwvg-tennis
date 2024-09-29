@@ -5,6 +5,7 @@ import ivwg.tennis.types.PointType;
 import ivwg.tennis.views.ScoreBoardView;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class ScoreBoard {
@@ -14,7 +15,7 @@ public class ScoreBoard {
     private GameScore gameScore;
     private List<Player> players;
     private int service;
-    private int serviceTiebreak = -1;
+    private Optional<Integer> serviceTiebreak = Optional.empty();
     private final Fault fault;
     private PointType pointType;
     private ScoreBoardView scoreBoardView;
@@ -39,9 +40,9 @@ public class ScoreBoard {
     }
 
     public void changeService() {
-        if (this.serviceTiebreak != -1) {
-            this.service = this.serviceTiebreak;
-            this.serviceTiebreak = -1;
+        if (this.serviceTiebreak.isPresent()) {
+            this.service = this.serviceTiebreak.get();
+            this.serviceTiebreak = Optional.empty();
         }
         this.service = updateService();
     }
@@ -51,15 +52,9 @@ public class ScoreBoard {
     }
 
     public void updateScore(Score score, int i) {
-        this.resetFaultIfExists();
+        this.resetFault();
         score.updateScore(i);
         this.setTypePoint(i);
-    }
-
-    private void resetFaultIfExists() {
-        if(fault.isFault()){
-            this.resetFault();
-        }
     }
 
     private void setTypePoint(int i){
@@ -127,24 +122,16 @@ public class ScoreBoard {
         return gameScore;
     }
 
-    public void setServiceTiebreak(int serviceTiebreak) {
-        this.serviceTiebreak = serviceTiebreak;
+    public void setServiceTiebreak(Integer serviceTiebreak) {
+        this.serviceTiebreak = Optional.ofNullable(serviceTiebreak);
     }
 
     private int updateService() {
         return (service + 1) % 2;
     }
 
-    public boolean isFault() {
-        return fault.isFault();
-    }
-
     public int getPlayerService() {
         return this.service;
-    }
-
-    public int getNumberOfSets() {
-        return this.matchScore.getNumberSets();
     }
 
     public PointType getPointType() {
@@ -152,7 +139,13 @@ public class ScoreBoard {
     }
 
     public void resetFault(){
-        fault.resetConsecutiveFaults();
+        if(isFault()){
+            fault.resetConsecutiveFaults();
+        }
+    }
+
+    public boolean isFault() {
+        return fault.isFault();
     }
 
     public void addSetGamesToView(SetScore setScore) {
