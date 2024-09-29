@@ -29,11 +29,11 @@ public class MatchScore extends Score{
 
     private boolean checkWinnerForSets(int setsToWin) {
         if (this.getScore(0) == setsToWin){
-            this.setIdGameWinner(this.getPlayers().getFirst().getId());
+            this.setIdWinner(this.getPlayers().getFirst().getId());
             return true;
         }
         else if(this.getScore(1) == setsToWin){
-            this.setIdGameWinner(this.getPlayers().get(1).getId());
+            this.setIdWinner(this.getPlayers().get(1).getId());
             return true;
         }
             return false;

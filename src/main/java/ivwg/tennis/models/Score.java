@@ -6,7 +6,7 @@ public abstract class Score {
 
     private int[] score;
 
-    private int idGameWinner;
+    private int idWinner;
     private List<Player> players;
 
     public Score(List<Player> players) {
@@ -29,11 +29,11 @@ public abstract class Score {
     }
 
     public int getIdWinner() {
-        return idGameWinner;
+        return idWinner;
     }
 
-    public void setIdGameWinner(int idGameWinner) {
-        this.idGameWinner = idGameWinner;
+    public void setIdWinner(int idWinner) {
+        this.idWinner = idWinner;
     }
 
     public void reset() {

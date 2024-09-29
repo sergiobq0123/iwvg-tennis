@@ -21,10 +21,10 @@ public class GameScore extends Score {
         int score1 = this.getScore(0);
         int score2 = this.getScore(1);
         if (score1 >= winningPoints && (score1 - score2) >= 2) {
-            this.setIdGameWinner(this.getPlayers().getFirst().getId());
+            this.setIdWinner(this.getPlayers().getFirst().getId());
             return true;
         } else if (score2 >= winningPoints && (score2 - score1) >= 2) {
-            this.setIdGameWinner(this.getPlayers().get(1).getId());
+            this.setIdWinner(this.getPlayers().get(1).getId());
             return true;
         }
         return false;

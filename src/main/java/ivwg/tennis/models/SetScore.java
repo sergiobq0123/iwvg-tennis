@@ -17,7 +17,7 @@ public class SetScore extends Score {
     private SetScore(List<Player> players, int[] score, int idGameWinner) {
         super(players);
         this.setScore(score);
-        this.setIdGameWinner(idGameWinner);
+        this.setIdWinner(idGameWinner);
     }
 
     @Override
@@ -33,10 +33,10 @@ public class SetScore extends Score {
 
     private boolean checkWinnerTieBreak() {
         if (getScore(0) == WINNING_POINTS_TIE_BREAK) {
-            this.setIdGameWinner(this.getPlayers().getFirst().getId());
+            this.setIdWinner(this.getPlayers().getFirst().getId());
             return true;
         } else if (getScore(1) == WINNING_POINTS_TIE_BREAK) {
-            this.setIdGameWinner(this.getPlayers().get(1).getId());
+            this.setIdWinner(this.getPlayers().get(1).getId());
             return true;
         }
         return false;
@@ -44,10 +44,10 @@ public class SetScore extends Score {
 
     private boolean checkNormalWinner() {
         if (getScore(0) >= WINNING_POINTS && (getScore(0) - getScore(1)) >= MINIMUM_LEAD) {
-            this.setIdGameWinner(this.getPlayers().getFirst().getId());
+            this.setIdWinner(this.getPlayers().getFirst().getId());
             return true;
         } else if (getScore(1) >= WINNING_POINTS && (getScore(1) - getScore(0)) >= MINIMUM_LEAD) {
-            this.setIdGameWinner(this.getPlayers().get(1).getId());
+            this.setIdWinner(this.getPlayers().get(1).getId());
             return true;
         }
         return false;
